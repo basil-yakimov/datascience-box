@@ -20,19 +20,19 @@ output:
 library(tidyverse)
 library(magick)
 library(Tmisc)
-library(dsbox)
+#library(dsbox)
 ```
 
 class: middle
 
-# What is in a dataset?
+# Что содержится в наборе данных?
 
 ---
 
-## Dataset terminology
+## Основы терминологии
 
-- Each row is an **observation**
-- Each column is a **variable**
+- Каждая строка - это **наблюдение**
+- Каждый столбец - это **переменная**
 
 .small[
 
@@ -50,9 +50,9 @@ starwars
 
 ---
 
-## What's in the Star Wars data?
+## Что содержится в наборе данных Star Wars?
 
-Take a `glimpse` at the data:
+Взглянем на данные с помощью функции `glimpse()`:
 
 ```{r}
 glimpse(starwars)
@@ -61,9 +61,9 @@ glimpse(starwars)
 ---
 
 .question[
-How many rows and columns does this dataset have?
-What does each row represent?
-What does each column represent?
+Сколько строк и столбцов содержит этот набор данных?
+Что представляет каждая строка?
+Что представляет каждый столбец?
 ]
 
 ```{r eval = FALSE}
@@ -77,14 +77,14 @@ knitr::include_graphics("img/starwars-help.png")
 ---
 
 .question[
-How many rows and columns does this dataset have?
+Сколько строк и столбцов содержится в этом набоер данных?
 ]
 
 .pull-left[
 ```{r}
-nrow(starwars) # number of rows
-ncol(starwars) # number of columns
-dim(starwars)  # dimensions (row column)
+nrow(starwars) # number of rows # число строк
+ncol(starwars) # number of columns # число столбцов
+dim(starwars)  # dimensions (row column) # размерность (строки столбцы)
 ```
 ]
 
@@ -92,15 +92,15 @@ dim(starwars)  # dimensions (row column)
 
 class: middle
 
-# Exploratory data analysis
+# Разведочный анализ данных
 
 ---
 
-## What is EDA?
+## Что такое разведочный анализ данных?
 
-- Exploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics
-- Often, this is visual -- this is what we'll focus on first
-- But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis -- this is what we'll focus on next
+- Разведочный анализ данных заключается в в представлении основных характеристик данных
+- Зачастую, это именно визуальный анализ -- с этого мы и начнем
+- Однако нам понадобится также рассчитать выборочные статистики и даже заняться манипулированием/трансформацией данных на этой (или даже раньше) стадии анализа -- до этого мы тоже доберемся
 
 ---
 
