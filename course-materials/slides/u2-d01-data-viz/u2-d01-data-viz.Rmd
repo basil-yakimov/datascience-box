@@ -1,5 +1,5 @@
 ---
-title: "Data and visualisation"
+title: "Данные и их визуализация"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -20,7 +20,7 @@ output:
 library(tidyverse)
 library(magick)
 library(Tmisc)
-#library(dsbox)
+library(dsbox)
 ```
 
 class: middle
@@ -77,14 +77,14 @@ knitr::include_graphics("img/starwars-help.png")
 ---
 
 .question[
-Сколько строк и столбцов содержится в этом набоер данных?
+Сколько строк и столбцов содержится в этом наборе данных?
 ]
 
 .pull-left[
 ```{r}
-nrow(starwars) # number of rows # число строк
-ncol(starwars) # number of columns # число столбцов
-dim(starwars)  # dimensions (row column) # размерность (строки столбцы)
+nrow(starwars) # число строк
+ncol(starwars) # число столбцов
+dim(starwars)  # размерность (строки столбцы)
 ```
 ]
 
@@ -98,21 +98,21 @@ class: middle
 
 ## Что такое разведочный анализ данных?
 
-- Разведочный анализ данных заключается в в представлении основных характеристик данных
-- Зачастую, это именно визуальный анализ -- с этого мы и начнем
-- Однако нам понадобится также рассчитать выборочные статистики и даже заняться манипулированием/трансформацией данных на этой (или даже раньше) стадии анализа -- до этого мы тоже доберемся
+- Разведочный анализ данных заключается в представлении основных характеристик данных
+- Зачастую, это именно визуальный анализ - с этого мы и начнем
+- Однако нам понадобится также рассчитать выборочные статистики и даже заняться манипулированием/трансформацией данных на этой (или даже раньше) стадии анализа - до этого мы тоже доберемся
 
 ---
 
 ## Mass vs. height
 
 .question[ 
-How would you describe the relationship between mass and height of Starwars characters?
-What other variables would help us understand data points that don't follow the overall trend?
-Who is the not so tall but really chubby character?
+Как бы вы описали зависимость между массой и ростом у персонажей Звездных войн?
+Какие  переменные помогут нам понять особые точки, не следующие основному тренду?
+Кто это там невысокий, но реально толстый чувак?
 ]
 
-```{r fig.width = 8, warning = FALSE, echo=FALSE, out.width = "50%"}
+```{r echo=FALSE, fig.width=8, warning=FALSE, out.width="50%"}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   labs(title = "Mass vs. height of Starwars characters",
@@ -145,17 +145,17 @@ knitr::include_graphics("img/jabbaplot.png")
 
 class: middle
 
-# Data visualization
+# Визуализация данных
 
 ---
 
-## Data visualization
+## Визуализация данных
 
 > *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
 
-- Data visualization is the creation and study of the visual representation of data
-- Many tools for visualizing data -- R is one of them
-- Many approaches/systems within R for making data visualizations -- **ggplot2** is one of them, and that's what we're going to use
+- Визуализация данных - это создание и изучение визуального прелставления данных
+- Есть много инструментов для визуализации данных - R один из них
+- Много подходов/систем визуализации данных внутри R - **ggplot2** один из них, именно его мы будем использовать
 
 ---
 
@@ -167,9 +167,9 @@ knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ```
 ] 
 .pull-right[ 
-- **ggplot2** is tidyverse's data visualization package 
-- `gg` in "ggplot2" stands for Grammar of Graphics 
-- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+- **ggplot2** - это пакет визуализации данных внутри tidyverse
+- `gg` в "ggplot2" означает Grammar of Graphics 
+- Реализует идеи книги Леланда Уилкинсона **Grammar of Graphics**
 ]
 
 ---
@@ -177,7 +177,7 @@ knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ## Grammar of Graphics
 
 .pull-left-narrow[
-A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+Грамматика графики - это инструмент, позволяющий сжато описывать компоненты графики
 ]
 .pull-right-wide[
 ```{r echo=FALSE, out.width="100%"}
@@ -201,17 +201,17 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ---
 
 .question[ 
-- What are the functions doing the plotting?
-- What is the dataset being plotted?
-- Which variables map to which features (aesthetics) of the plot?
-- What does the warning mean?<sup>+</sup>
+- Какие функции создают график?
+- Какой набор данных визуализирутся?
+- Какие переменные соответствуют каким элементам (эстетикам) графика?
+- Что означает предупреждение?<sup>+</sup>
 ]
 
 ```{r ref.label="mass-height", fig.show = "hide"}
 ```
 
 .footnote[
-<sup>+</sup>Suppressing warning to subsequent slides to save space
+<sup>+</sup>В дальнейшем предупреждения не отображены в целях экономии места
 ]
 
 ---
@@ -219,9 +219,9 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Hello ggplot2!
 
 .pull-left-wide[
-- `ggplot()` is the main function in ggplot2
-- Plots are constructed in layers
-- Structure of the code for plots can be summarized as
+- `ggplot()` - это основная функция пакета ggplot2
+- Графики создаются послойно
+- Структура кода может быть представлена следующим образом
 
 ```{r eval = FALSE}
 ggplot(data = [dataset], 
@@ -230,20 +230,20 @@ ggplot(data = [dataset],
    other options
 ```
 
-- The ggplot2 package comes with the tidyverse
+- Пакет ggplot2 входит в tidyverse
 
 ```{r}
 library(tidyverse)
 ```
 
-- For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+- Справка по ggplot2, см. [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 ]
 
 ---
 
 class: middle
 
-# Why do we visualize?
+# Засчем нужна визуализация?
 
 ---
 
@@ -267,7 +267,7 @@ quartet[23:44,]
 
 ---
 
-## Summarising Anscombe's quartet
+## Описательные статистики для квартета Энскомба
 
 ```{r quartet-summary}
 quartet %>%
@@ -283,7 +283,7 @@ quartet %>%
 
 ---
 
-## Visualizing Anscombe's quartet
+## Визуализация квартета Энскомба
 
 ```{r quartet-plot, echo = FALSE, out.width = "80%", fig.asp = 0.5}
 ggplot(quartet, aes(x = x, y = y)) +
@@ -291,36 +291,3 @@ ggplot(quartet, aes(x = x, y = y)) +
   facet_wrap(~ set, ncol = 4)
 ```
 
----
-
-## Age at first kiss
-
-.question[ 
-Do you see anything out of the ordinary?
-]
-
-```{r echo = FALSE, warning = FALSE}
-ggplot(student_survey, aes(x = first_kiss)) +
-  geom_histogram(binwidth = 1) +
-  labs(
-    title = "How old were you when you had your first kiss?", 
-    x = "Age (years)", y = NULL
-    )
-```
-
----
-
-## Facebook visits
-
-.question[ 
-How are people reporting lower vs. higher values of FB visits?
-]
-
-```{r echo = FALSE, warning = FALSE}
-ggplot(student_survey, aes(x = fb_visits_per_day)) +
-  geom_histogram(binwidth = 1) +
-  labs(
-    title = "How many times do you go on Facebook per day?", 
-    x = "Number of times", y = NULL
-    )
-```

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data and visualisation</title>
+    <title>Данные и их визуализация</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data and visualisation
+# Данные и их визуализация
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -127,13 +127,13 @@ glimpse(starwars)
 ---
 
 .question[
-Сколько строк и столбцов содержится в этом набоер данных?
+Сколько строк и столбцов содержится в этом наборе данных?
 ]
 
 .pull-left[
 
 ```r
-nrow(starwars) # number of rows # число строк
+nrow(starwars) # число строк
 ```
 
 ```
@@ -141,7 +141,7 @@ nrow(starwars) # number of rows # число строк
 ```
 
 ```r
-ncol(starwars) # number of columns # число столбцов
+ncol(starwars) # число столбцов
 ```
 
 ```
@@ -149,7 +149,7 @@ ncol(starwars) # number of columns # число столбцов
 ```
 
 ```r
-dim(starwars)  # dimensions (row column) # размерность (строки столбцы)
+dim(starwars)  # размерность (строки столбцы)
 ```
 
 ```
@@ -167,18 +167,18 @@ class: middle
 
 ## Что такое разведочный анализ данных?
 
-- Разведочный анализ данных заключается в в представлении основных характеристик данных
-- Зачастую, это именно визуальный анализ -- с этого мы и начнем
-- Однако нам понадобится также рассчитать выборочные статистики и даже заняться манипулированием/трансформацией данных на этой (или даже раньше) стадии анализа -- до этого мы тоже доберемся
+- Разведочный анализ данных заключается в представлении основных характеристик данных
+- Зачастую, это именно визуальный анализ - с этого мы и начнем
+- Однако нам понадобится также рассчитать выборочные статистики и даже заняться манипулированием/трансформацией данных на этой (или даже раньше) стадии анализа - до этого мы тоже доберемся
 
 ---
 
 ## Mass vs. height
 
 .question[ 
-How would you describe the relationship between mass and height of Starwars characters?
-What other variables would help us understand data points that don't follow the overall trend?
-Who is the not so tall but really chubby character?
+Как бы вы описали зависимость между массой и ростом у персонажей Звездных войн?
+Какие  переменные помогут нам понять особые точки, не следующие основному тренду?
+Кто это там невысокий, но реально толстый чувак?
 ]
 
 &lt;img src="u2-d01-data-viz_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -193,17 +193,17 @@ Who is the not so tall but really chubby character?
 
 class: middle
 
-# Data visualization
+# Визуализация данных
 
 ---
 
-## Data visualization
+## Визуализация данных
 
 &gt; *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
 
-- Data visualization is the creation and study of the visual representation of data
-- Many tools for visualizing data -- R is one of them
-- Many approaches/systems within R for making data visualizations -- **ggplot2** is one of them, and that's what we're going to use
+- Визуализация данных - это создание и изучение визуального прелставления данных
+- Есть много инструментов для визуализации данных - R один из них
+- Много подходов/систем визуализации данных внутри R - **ggplot2** один из них, именно его мы будем использовать
 
 ---
 
@@ -213,9 +213,9 @@ class: middle
 &lt;img src="img/ggplot2-part-of-tidyverse.png" width="80%" style="display: block; margin: auto;" /&gt;
 ] 
 .pull-right[ 
-- **ggplot2** is tidyverse's data visualization package 
-- `gg` in "ggplot2" stands for Grammar of Graphics 
-- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+- **ggplot2** - это пакет визуализации данных внутри tidyverse
+- `gg` в "ggplot2" означает Grammar of Graphics 
+- Реализует идеи книги Леланда Уилкинсона **Grammar of Graphics**
 ]
 
 ---
@@ -223,7 +223,7 @@ class: middle
 ## Grammar of Graphics
 
 .pull-left-narrow[
-A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+Грамматика графики - это инструмент, позволяющий сжато описывать компоненты графики
 ]
 .pull-right-wide[
 &lt;img src="img/grammar-of-graphics.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -252,10 +252,10 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ---
 
 .question[ 
-- What are the functions doing the plotting?
-- What is the dataset being plotted?
-- Which variables map to which features (aesthetics) of the plot?
-- What does the warning mean?&lt;sup&gt;+&lt;/sup&gt;
+- Какие функции создают график?
+- Какой набор данных визуализирутся?
+- Какие переменные соответствуют каким элементам (эстетикам) графика?
+- Что означает предупреждение?&lt;sup&gt;+&lt;/sup&gt;
 ]
 
 
@@ -271,7 +271,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ```
 
 .footnote[
-&lt;sup&gt;+&lt;/sup&gt;Suppressing warning to subsequent slides to save space
+&lt;sup&gt;+&lt;/sup&gt;В дальнейшем предупреждения не отображены в целях экономии места
 ]
 
 ---
@@ -279,9 +279,9 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Hello ggplot2!
 
 .pull-left-wide[
-- `ggplot()` is the main function in ggplot2
-- Plots are constructed in layers
-- Structure of the code for plots can be summarized as
+- `ggplot()` - это основная функция пакета ggplot2
+- Графики создаются послойно
+- Структура кода может быть представлена следующим образом
 
 
 ```r
@@ -291,21 +291,21 @@ ggplot(data = [dataset],
    other options
 ```
 
-- The ggplot2 package comes with the tidyverse
+- Пакет ggplot2 входит в tidyverse
 
 
 ```r
 library(tidyverse)
 ```
 
-- For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+- Справка по ggplot2, см. [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 ]
 
 ---
 
 class: middle
 
-# Why do we visualize?
+# Засчем нужна визуализация?
 
 ---
 
@@ -372,7 +372,7 @@ class: middle
 
 ---
 
-## Summarising Anscombe's quartet
+## Описательные статистики для квартета Энскомба
 
 
 ```r
@@ -399,29 +399,10 @@ quartet %&gt;%
 
 ---
 
-## Visualizing Anscombe's quartet
+## Визуализация квартета Энскомба
 
 &lt;img src="u2-d01-data-viz_files/figure-html/quartet-plot-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
----
-
-## Age at first kiss
-
-.question[ 
-Do you see anything out of the ordinary?
-]
-
-&lt;img src="u2-d01-data-viz_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Facebook visits
-
-.question[ 
-How are people reporting lower vs. higher values of FB visits?
-]
-
-&lt;img src="u2-d01-data-viz_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
