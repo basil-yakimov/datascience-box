@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Visualising numerical data</title>
+    <title>Визуализация числовых данных</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Visualising numerical data
+# Визуализация числовых данных
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -40,40 +40,40 @@ layout: true
 
 class: middle
 
-# Terminology
+# Терминология
 
 ---
 
-## Number of variables involved
+## Число задействованных переменных
 
-- Univariate data analysis - distribution of single variable
-- Bivariate data analysis - relationship between two variables
-- Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
+- Одномерный анализ данных - распределение единственной переменной
+- Двумерный анализ данных - взаимоотношение между двумя переменными
+- Многомерный анализ данных - отношения между множеством переменных, обычно с фокусом на отношении между двумя при разных значениях других переменных
 
 ---
 
-## Types of variables
+## Типы переменных
 
-- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
-- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+- **Числовые переменные** могут быть разделены на **непрерывные** либо **дискретные** в зависимости от того, могут переменные принимать бесконечное число значений или только положительные целые числа (чаще всего).
+- Если переменная **категориальная**, она может быть **упорядоченной**, если ее уровни обладают естественным порядком.
 
 ---
 
 class: middle
 
-# Data
+# Данные
 
 ---
 
-## Data: Lending Club
+## Данные: Кредитный клуб
 
 .pull-left-wide[
 
-- Thousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals
+- Тысячи кредитов, выданных через "Кредитный клуб", платформу, которая позволяет физическим лицам предоставлять ссуды другим лицам.
 
-- Not all loans are created equal -- ease of getting a loan depends on (apparent) ability to pay back the loan
+- Не все ссуды одинаковы - простота получения ссуды зависит от (предположительной) способности выплатить ссуду.
 
-- Data includes loans *made*, these are not loan applications
+- Данные включают *выданные* ссуды, это не заявки
 ]
 .pull-right-narrow[
 &lt;img src="img/lending-club.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -81,7 +81,7 @@ class: middle
 
 ---
 
-## Take a peek at data
+## Взглянем на данные
 
 
 ```r
@@ -113,7 +113,7 @@ glimpse(loans_full_schema)
 
 ---
 
-## Selected variables
+## Выбранные переменные
 
 
 ```r
@@ -138,66 +138,66 @@ glimpse(loans)
 
 ---
 
-## Selected variables
+## Выбранные переменные
 
 &lt;br&gt;
 
 .midi[
-variable        | description
+переменная        | описание
 ----------------|-------------
-`loan_amount`   |	Amount of the loan received, in US dollars
-`interest_rate` |	Interest rate on the loan, in an annual percentage
-`term`	        | The length of the loan, which is always set as a whole number of months
-`grade`	        | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid
-`state`         |	US state where the borrower resides
-`annual_income` |	Borrower’s annual income, including any second income, in US dollars
-`homeownership`	| Indicates whether the person owns, owns but has a mortgage, or rents
-`debt_to_income` | Debt-to-income ratio
+`loan_amount`   |	Сумма полученного кредита в долларах США
+`interest_rate` |	Процентная ставка по кредиту, в процентах годовых
+`term`	        | Срок кредита, который всегда определяется как целое количество месяцев
+`grade`	        | Оценка ссуды, которая принимает значения от A до G и представляет качество ссуды и вероятность ее погашения
+`state`         |	Штат США, где проживает заемщик
+`annual_income` |	Годовой доход заемщика, включая любой второй доход, в долларах США
+`homeownership`	| Указывает, владеет ли жильем человек, владеет по ипотеке или арендует
+`debt_to_income` | Отношение долга к доходу
 ]
 
 ---
 
-## Variable types
+## Типы переменных
 
 &lt;br&gt;
 
-variable        | type
+переменная        | тип
 ----------------|-------------
-`loan_amount`   |	numerical, continuous
-`interest_rate` |	numerical, continuous
-`term`	        | numerical, discrete
-`grade`	        | categorical, ordinal
-`state`         |	categorical, not ordinal
-`annual_income` |	numerical, continuous
-`homeownership`	| categorical, not ordinal
-`debt_to_income` | numerical, continuous
+`loan_amount`   |	числовая, непрерывная
+`interest_rate` |	числовая, непрерывная
+`term`	        | числовая, дискретная
+`grade`	        | категориальная, упорядоченная
+`state`         |	категориальная, неупорядоченная
+`annual_income` |	числовая, непрерывная
+`homeownership`	| категориальная, неупорядоченная
+`debt_to_income` | числовая, непрерывная
 
 ---
 
 class: middle
 
-# Visualizing numerical data
+# Визуализация числовых данных
 
 ---
 
-## Describing shapes of numerical distributions
+## Форма распределения числовой переменной
 
-- shape:
-    - skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
-    - modality: unimodal, bimodal, multimodal, uniform
-- center: mean (`mean`), median (`median`), mode (not always useful)
-- spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
-- unusual observations
+- форма:
+    - скошенность: скошенная вправо, скошенная влево, симметричная (направление перекоса учитывается в сторону длинного хвоста)
+    - модальность: унимодальное, бимодальное, многомодальное, равномерное
+- центр: среднее (`mean`), медиана (`median`), мода (не всегда полезна)
+- разброс: диапазон (`range`), стандартное отклонение (`sd`), межквартильное расстояние (`IQR`)
+- необычные наблюдения
 
 ---
 
 class: middle
 
-# Histogram
+# Гистограмма
 
 ---
 
-## Histogram
+## Гистограмма
 
 
 ```r
@@ -214,7 +214,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Histograms and binwidth
+## Гистограммы и ширина интервала
 
 .panelset[
 .panel[.panel-name[binwidth = 1000]
@@ -248,7 +248,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Customizing histograms
+## Настройка гистограмм
 
 .panelset[
 .panel[.panel-name[Plot]
