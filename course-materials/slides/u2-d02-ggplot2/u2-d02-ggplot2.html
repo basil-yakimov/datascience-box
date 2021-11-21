@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Visualising data with ggplot2</title>
+    <title>Визуализация данных в ggplot2</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Visualising data with ggplot2
+# Визуализация данных в ggplot2
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -50,8 +50,8 @@ class: middle
 &lt;img src="img/ggplot2-part-of-tidyverse.png" width="80%" style="display: block; margin: auto;" /&gt;
 ] 
 .pull-right[ 
-- **ggplot2** is tidyverse's data visualization package 
-- Structure of the code for plots can be summarized as
+- **ggplot2** - это пакет визуализации данных, входящий в tidyverse 
+- Структура кода для графика может быть представлена следующим образом
 
 
 ```r
@@ -65,9 +65,9 @@ ggplot(data = [dataset],
 
 ---
 
-## Data: Palmer Penguins
+## Данные: Пингвины архипелага Палмер
 
-Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+Данные о виде пингвина, острове в архипелаге Палмера, промерах (длина плавника, масса тела, измерения клюва), поле.
 
 .pull-left-narrow[
 &lt;img src="img/penguins.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -123,12 +123,12 @@ ggplot(data = penguins,
 
 class: middle
 
-# Coding out loud
+# Пишем код шаг за шагом
 
 ---
 
 .midi[
-&gt; **Start with the `penguins` data frame**
+&gt; **Начинаем с фрейма `penguins` **
 ]
 
 .pull-left[
@@ -144,8 +144,8 @@ class: middle
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; **map bill depth to the x-axis**
+&gt; Начинаем с фрейма `penguins`,
+&gt; **устанавливаем соответствие между высотой клюва и осью `x`**
 ]
 
 .pull-left[
@@ -162,9 +162,9 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; **and map bill length to the y-axis.**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; **и между длиной клюва и осью `y`.**
 ]
 
 .pull-left[
@@ -182,10 +182,10 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; **Represent each observation with a point**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; **Каждое наблюдение отображаем в виде точки**
 ]
 
 .pull-left[
@@ -204,11 +204,11 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; **and map species to the colour of each point.**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; **и устанавливаем соответствие между видом и цветом точки.**
 ]
 
 .pull-left[
@@ -228,12 +228,12 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; **Title the plot "Bill depth and length"**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; **Называем график "Ширина и длина клюва"**
 ]
 
 .pull-left[
@@ -244,7 +244,7 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-* labs(title = "Bill depth and length")
+* labs(title = "Ширина и длина клюва")
 ```
 ]
 .pull-right[
@@ -254,13 +254,13 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; Title the plot "Bill depth and length", 
-&gt; **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; Называем график "Ширина и длина клюва", 
+&gt; **добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"**
 ]
 
 .pull-left[
@@ -271,8 +271,8 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-*      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins")
+  labs(title = "Ширина и длина клюва",
+*      subtitle = "Измерения пингвинов Адели, антарктического и субантарктического")
 ```
 ]
 .pull-right[
@@ -282,14 +282,14 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; Title the plot "Bill depth and length", 
-&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
-&gt; **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; Называем график "Ширина и длина клюва", 
+&gt; добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"
+&gt; **и подписи осей "Высота клюва (мм)" и "Длина клюва (мм)"**
 ]
 
 .pull-left[
@@ -300,9 +300,9 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-*      x = "Bill depth (mm)", y = "Bill length (mm)")
+  labs(title = "Высота и длина клюва",
+       subtitle = "Измерения пингвинов Адели, антарктического и субантарктического",
+*      x = "Высота клюва (мм)", y = "Длина клюва (мм)")
 ```
 ]
 .pull-right[
@@ -312,15 +312,15 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; Title the plot "Bill depth and length", 
-&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
-&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
-&gt; **label the legend "Species"**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; Называем график "Ширина и длина клюва", 
+&gt; добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"
+&gt; и подписи осей "Высота клюва (мм)" и "Длина клюва (мм)",
+&gt; **а также название легенды "Виды"**
 ]
 
 .pull-left[
@@ -331,10 +331,10 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-       x = "Bill depth (mm)", y = "Bill length (mm)",
-*      colour = "Species")
+  labs(title = "Высота и длина клюва",
+       subtitle = "Измерения пингвинов Адели, антарктического и субантарктического",
+       x = "Высота клюва (мм)", y = "Длина клюва (мм)",
+*      colour = "Виды")
 ```
 ]
 .pull-right[
@@ -344,16 +344,16 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; Title the plot "Bill depth and length", 
-&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
-&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
-&gt; label the legend "Species", 
-&gt; **and add a caption for the data source.**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; Называем график "Ширина и длина клюва", 
+&gt; добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"
+&gt; и подписи осей "Высота клюва (мм)" и "Длина клюва (мм)",
+&gt; а также название легенды "Виды"
+&gt; **и подрисуночную подпись с источником данных.**
 ]
 
 .pull-left[
@@ -364,11 +364,11 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-       x = "Bill depth (mm)", y = "Bill length (mm)",
-       colour = "Species",
-*      caption = "Source: Palmer Station LTER / palmerpenguins package")
+  labs(title = "Высота и длина клюва",
+       subtitle = "Измерения пингвинов Адели, антарктического и субантарктического",
+       x = "Высота клюва (мм)", y = "Длина клюва (мм)",
+       colour = "Виды",
+*      caption = "Источник: Palmer Station LTER / palmerpenguins package")
 ```
 ]
 .pull-right[
@@ -378,17 +378,17 @@ ggplot(data = penguins,
 ---
 
 .midi[
-&gt; Start with the `penguins` data frame,
-&gt; map bill depth to the x-axis
-&gt; and map bill length to the y-axis. 
-&gt; Represent each observation with a point
-&gt; and map species to the colour of each point.
-&gt; Title the plot "Bill depth and length", 
-&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
-&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
-&gt; label the legend "Species", 
-&gt; and add a caption for the data source.
-&gt; **Finally, use a discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness.**
+&gt; Начинаем с фрейма `penguins`,
+&gt; устанавливаем соответствие между высотой клюва и осью `x`
+&gt; и между длиной клюва и осью `y`. 
+&gt; Каждое наблюдение отображаем в виде точки
+&gt; и устанавливаем соответствие между видом и цветом точки.
+&gt; Называем график "Ширина и длина клюва", 
+&gt; добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"
+&gt; и подписи осей "Высота клюва (мм)" и "Длина клюва (мм)",
+&gt; а также название легенды "Виды"
+&gt; и подрисуночную подпись с источником данных.
+&gt; **И, наконец, изменим цветовую схему на подходящую для людей с распространенной формой дальтонизма.**
 ]
 
 .pull-left[
@@ -399,11 +399,11 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-       x = "Bill depth (mm)", y = "Bill length (mm)",
-       colour = "Species",
-       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  labs(title = "Высота и длина клюва",
+       subtitle = "Измерения пингвинов Адели, антарктического и субантарктического",
+       x = "Высота клюва (мм)", y = "Длина клюва (мм)",
+       colour = "Виды",
+       caption = "Источник: Palmer Station LTER / palmerpenguins package") +
 * scale_colour_viridis_d()
 ```
 ]
@@ -426,11 +426,11 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      colour = species)) +
   geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-       x = "Bill depth (mm)", y = "Bill length (mm)",
-       colour = "Species",
-       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  labs(title = "Высота и длина клюва",
+       subtitle = "Измерения пингвинов Адели, антарктического и субантарктического",
+       x = "Высота клюва (мм)", y = "Длина клюва (мм)",
+       colour = "Виды",
+       caption = "Источник: Palmer Station LTER / palmerpenguins package") +
   scale_colour_viridis_d()
 ```
 
