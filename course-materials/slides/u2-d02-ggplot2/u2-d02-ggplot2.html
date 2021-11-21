@@ -441,20 +441,20 @@ ggplot(data = penguins,
 .panel[.panel-name[Narrative]
 .pull-left-wide[
 .midi[
-Start with the `penguins` data frame,
-map bill depth to the x-axis
-and map bill length to the y-axis. 
+Начинаем с фрейма `penguins`,
+устанавливаем соответствие между высотой клюва и осью `x`
+и между длиной клюва и осью `y`. 
 
-Represent each observation with a point
-and map species to the colour of each point.
+Каждое наблюдение отображаем в виде точки
+и устанавливаем соответствие между видом и цветом точки.
 
-Title the plot "Bill depth and length", 
-add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
-label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
-label the legend "Species", 
-and add a caption for the data source.
+Называем график "Ширина и длина клюва", 
+добавляем подзаголовок "Измерения пингвинов Адели, антарктического и субантарктического"
+и подписи осей "Высота клюва (мм)" и "Длина клюва (мм)",
+а также название легенды "Виды"
+и подрисуночную подпись с источником данных.
 
-Finally, use a discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness.
+И, наконец, изменим цветовую схему на подходящую для людей с распространенной формой дальтонизма.
 ]
 ]
 ]
@@ -462,10 +462,10 @@ Finally, use a discrete colour scale that is designed to be perceived by viewers
 
 ---
 
-## Argument names
+## Имена аргументов
 
 .tip[
-You can omit the names of first two arguments when building plots with `ggplot()`.
+При построении графиков в `ggplot()` можно опустить имена первых двух аргументов.
 ]
 
 .pull-left[
@@ -495,22 +495,22 @@ ggplot(penguins,
 
 class: middle
 
-# Aesthetics
+# Эстетики
 
 ---
 
-## Aesthetics options
+## Варианты эстетик
 
-Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
+Часто используемые свойства символов, которые **могут быть поставлены в соответствие переменным** в данных:
 
 - `colour`
 - `shape`
 - `size`
-- `alpha` (transparency)
+- `alpha` (прозрачность)
 
 ---
 
-## Colour
+## Цвет
 
 .pull-left[
 
@@ -529,9 +529,9 @@ ggplot(penguins,
 
 ---
 
-## Shape
+## Форма
 
-Mapped to a different variable than `colour`
+Поставлена в соответствие другой переменной по сравнению с `colour`
 
 .pull-left[
 
@@ -551,9 +551,9 @@ ggplot(penguins,
 
 ---
 
-## Shape
+## Форма
 
-Mapped to same variable as `colour`
+Поставлена в соответствие той же переменной, что и `colour`
 
 .pull-left[
 
@@ -573,7 +573,7 @@ ggplot(penguins,
 
 ---
 
-## Size
+## Размер
 
 .pull-left[
 
@@ -594,7 +594,7 @@ ggplot(penguins,
 
 ---
 
-## Alpha
+## Прозрачность
 
 .pull-left[
 
@@ -617,7 +617,7 @@ ggplot(penguins,
 ---
 
 .pull-left[
-**Mapping**
+**Соответствие**
 
 
 ```r
@@ -632,7 +632,7 @@ ggplot(penguins,
 &lt;img src="u2-d02-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-**Setting**
+**Определение**
 
 
 ```r
@@ -647,13 +647,13 @@ ggplot(penguins,
 
 ---
 
-## Mapping vs. setting
+## Соответствие vs. определение
 
-- **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
-  - goes into `aes()`
+- **Соответствие:** Устанавливает размер, прозрачность и пр. свойства точек на основе значений переменной в данных
+  - идет в `aes()`
 
-- **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
-  - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
+- **Определение:** Устанавливает размер, прозрачность и пр. свойства точек **не** на основе значений переменной в данных
+  - идет в `geom_*()` (в предыдущем примере это был `geom_point()`, но мы скоро познакомимся с другими тоже!)
   
 ---
 
@@ -665,8 +665,8 @@ class: middle
 
 ## Faceting
 
-- Smaller plots that display different subsets of the data
-- Useful for exploring conditional relationships and large data
+- Меньшие по размеру графики, которые отражают подмножества данных
+- Полезны для рассмотрения условных отношений и большых объемов данных
 
 ---
 
@@ -694,10 +694,10 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ## Various ways to facet
 
 .question[
-In the next few slides describe what each plot displays. Think about how the code relates to the output.
+На нескольких следующих слайдах опишите, что отображает каждый из графиков. Подумайте о то, как код связан с результатом.
 
-**Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
-But you should always label your plots!
+**На заметку:** Графики на следующих слайдах не имеют оформленных заголовком, подписей и пр., потому что мы хотим сосредоточить вас на том, что происходит с самими графиками.
+Но свои графики вы должны всегда оформлять!
 ]
 
 ---
@@ -760,14 +760,14 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ## Faceting summary
 
 - `facet_grid()`:
-    - 2d grid
+    - двумерная сетка
     - `rows ~ cols`
-    - use `.` for no split
-- `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
+    - используйте `.` , если не нужно разделять
+- `facet_wrap()`: одномерная лента, разделенная на строки в соответствии с установленным числом строк или столбцов, либо по доступному месту
 
 ---
 
-## Facet and color
+## Панели и цвет
 
 .pull-left-narrow[
 
@@ -788,7 +788,7 @@ ggplot(
 
 ---
 
-## Face and color, no legend
+## Панели и цвет, без легенды
 
 .pull-left-narrow[
 
