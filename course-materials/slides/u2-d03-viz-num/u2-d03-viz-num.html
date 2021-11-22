@@ -148,10 +148,10 @@ glimpse(loans)
 `loan_amount`   |	Сумма полученного кредита в долларах США
 `interest_rate` |	Процентная ставка по кредиту, в процентах годовых
 `term`	        | Срок кредита, который всегда определяется как целое количество месяцев
-`grade`	        | Оценка ссуды, которая принимает значения от A до G и представляет качество ссуды и вероятность ее погашения
+`grade`	        | Оценка ссуды, которая принимает значения от A до G и отражает качество ссуды и вероятность ее погашения
 `state`         |	Штат США, где проживает заемщик
-`annual_income` |	Годовой доход заемщика, включая любой второй доход, в долларах США
-`homeownership`	| Указывает, владеет ли жильем человек, владеет по ипотеке или арендует
+`annual_income` |	Годовой доход заемщика, включая дополнительный доход, в долларах США
+`homeownership`	| Указывает, владеет ли заемщик жильем, владеет по ипотеке или арендует
 `debt_to_income` | Отношение долга к доходу
 ]
 
@@ -260,9 +260,9 @@ ggplot(loans, aes(x = loan_amount)) +
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000) +
 * labs(
-*   x = "Loan amount ($)",
-*   y = "Frequency",
-*   title = "Amounts of Lending Club loans"
+*   x = "Размер ссуды ($)",
+*   y = "Частота",
+*   title = "Число ссуд Кредитного клуба"
 * )
 ```
 ]
@@ -270,7 +270,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Fill with a categorical variable
+## Заливка на основе категориальной переменной
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -284,9 +284,9 @@ ggplot(loans, aes(x = loan_amount,
   geom_histogram(binwidth = 5000,
 *                alpha = 0.5) +
   labs(
-    x = "Loan amount ($)",
-    y = "Frequency",
-    title = "Amounts of Lending Club loans"
+    x = "Размер ссуды ($)",
+    y = "Частота",
+    title = "Число ссуд Кредитного клуба"
   )
 ```
 ]
@@ -294,7 +294,7 @@ ggplot(loans, aes(x = loan_amount,
 
 ---
 
-## Facet with a categorical variable
+## Панели на основе категориальной переменной
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -306,9 +306,9 @@ ggplot(loans, aes(x = loan_amount,
 ggplot(loans, aes(x = loan_amount, fill = homeownership)) + 
   geom_histogram(binwidth = 5000) +
   labs(
-    x = "Loan amount ($)",
-    y = "Frequency",
-    title = "Amounts of Lending Club loans"
+    x = "Размер ссуды ($)",
+    y = "Частота",
+    title = "Число ссуд Кредитного клуба"
   ) +
 * facet_wrap(~ homeownership, nrow = 3)
 ```
@@ -319,11 +319,11 @@ ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
 
 class: middle
 
-# Density plot
+# График плотности
 
 ---
 
-## Density plot
+## График плотности
 
 
 ```r
@@ -335,7 +335,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Density plots and adjusting bandwidth
+## Настройка ширины интервала 
 
 .panelset[
 .panel[.panel-name[adjust = 0.5]
@@ -369,7 +369,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Customizing density plots
+## Настройка графика плотности
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -381,9 +381,9 @@ ggplot(loans, aes(x = loan_amount)) +
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2) +
 * labs(
-*   x = "Loan amount ($)",
-*   y = "Density",
-*   title = "Amounts of Lending Club loans"
+*   x = "Размер ссуды ($)",
+*   y = "Частота",
+*   title = "Число ссуд Кредитного клуба"
 * )
 ```
 ]
@@ -391,7 +391,7 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Adding a categorical variable
+## Добавление категориальной переменной
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -405,10 +405,10 @@ ggplot(loans, aes(x = loan_amount,
   geom_density(adjust = 2, 
 *              alpha = 0.5) +
   labs(
-    x = "Loan amount ($)",
-    y = "Density",
-    title = "Amounts of Lending Club loans", 
-*   fill = "Homeownership"
+    x = "Размер ссуды ($)",
+    y = "Частота",
+    title = "Число ссуд Кредитного клуба",
+*   fill = "Недвижимость"
   )
 ```
 ]
@@ -418,11 +418,11 @@ ggplot(loans, aes(x = loan_amount,
 
 class: middle
 
-# Box plot
+# Диаграмма размаха
 
 ---
 
-## Box plot
+## Диаграмма размаха
 
 
 ```r
@@ -434,7 +434,7 @@ ggplot(loans, aes(x = interest_rate)) +
 
 ---
 
-## Box plot and outliers
+## Диаграмма размаха и уклоняющиеся значения
 
 
 ```r
@@ -446,7 +446,7 @@ ggplot(loans, aes(x = annual_income)) +
 
 ---
 
-## Customizing box plots
+## Настройка диаграммы размаха
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -458,9 +458,9 @@ ggplot(loans, aes(x = annual_income)) +
 ggplot(loans, aes(x = interest_rate)) +
   geom_boxplot() +
   labs(
-    x = "Interest rate (%)",
+    x = "Процентная ставка (%)",
     y = NULL,
-    title = "Interest rates of Lending Club loans"
+    title = "Процентные ставки по ссудам Кредитного клуба"
   ) +
 * theme(
 *   axis.ticks.y = element_blank(),
@@ -472,7 +472,7 @@ ggplot(loans, aes(x = interest_rate)) +
 
 ---
 
-## Adding a categorical variable
+## Добавление категориальной переменной
 
 .panelset[
 .panel[.panel-name[Plot]
@@ -485,10 +485,10 @@ ggplot(loans, aes(x = interest_rate,
 *                 y = grade)) +
   geom_boxplot() +
   labs(
-    x = "Interest rate (%)",
-    y = "Grade",
-    title = "Interest rates of Lending Club loans",
-*   subtitle = "by grade of loan"
+    x = "Процентная ставка (%)",
+    y = "Класс качества",
+    title = "Процентные ставки по ссудам Кредитного клуба",
+*   subtitle = "по классам качества"
   )
 ```
 ]
@@ -498,11 +498,11 @@ ggplot(loans, aes(x = interest_rate,
 
 class: middle
 
-# Relationships numerical variables
+# Отношения между числовыми переменными
 
 ---
 
-## Scatterplot
+## Диаграмма рассеяния
 
 
 ```r
@@ -514,7 +514,7 @@ ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
 
 ---
 
-## Hex plot
+## Гексагональный график
 
 
 ```r
@@ -526,7 +526,7 @@ ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
 
 ---
 
-## Hex plot
+## Гексагональный график
 
 
 ```r
