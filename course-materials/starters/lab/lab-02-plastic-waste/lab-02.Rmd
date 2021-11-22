@@ -1,11 +1,11 @@
 ---
-title: "Lab 02 - Plastic waste"
-author: "Insert your name here"
-date: "Insert date here"
+title: "Lab 02 - Пластиковые отходы"
+author: "Вставьте сюда Ваше имя"
+date: "Вставьте сюда дату"
 output: github_document
 ---
 
-## Load packages and data
+## Загружаем пакеты и данные
 
 ```{r load-packages, message=FALSE}
 library(tidyverse) 
@@ -15,66 +15,66 @@ library(tidyverse)
 plastic_waste <- read_csv("data/plastic-waste.csv")
 ```
 
-## Exercises
+## Упражнения
 
-### Exercise 1
+### Упражнение 1
 
-Remove this text, and add your answer for Exercise 1 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 1.
 
 ```{r plastic-waste-continent}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 2
+### Упражнение 2
 
 ```{r plastic-waste-density}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 3
+### Упражнение 3
 
-Remove this text, and add your answer for Exercise 3 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 3.
 
-### Exercise 4
+### Упражнение 4
 
-Remove this text, and add your answer for Exercise 4 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 4.
 
 ```{r plastic-waste-violin}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 5
+### Упражнение 5
 
-Remove this text, and add your answer for Exercise 5 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 5.
 
 ```{r plastic-waste-mismanaged}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 6
+### Упражнение 6
 
-Remove this text, and add your answer for Exercise 6 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 6.
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 7
+### Упражнение 7
 
-Remove this text, and add your answer for Exercise 7 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 7.
 
 ```{r plastic-waste-population-total}
-# insert code here
+# вставьте сюда ваш код
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+# вставьте сюда ваш код
 ```
 
-### Exercise 8
+### Упражнение 8
 
-Remove this text, and add your answer for Exercise 8 here.
+Замените этот текст и добавьте ваш ответ на Упражнение 8.
 
 ```{r recreate-viz}
-# insert code here
+# вставьте сюда ваш код
 ```
