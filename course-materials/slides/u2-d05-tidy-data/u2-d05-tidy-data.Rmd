@@ -1,5 +1,5 @@
 ---
-title: "Tidy data"
+title: "Чистые данные"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -20,7 +20,7 @@ output:
 library(tidyverse)
 ```
 
-## Tidy data
+## Чистые данные
 
 >Happy families are all alike; every unhappy family is unhappy in its own way. 
 >
@@ -29,15 +29,15 @@ library(tidyverse)
 --
 
 .pull-left[
-**Characteristics of tidy data:**
+**Характеристики чистых данных:**
 
-- Each variable forms a column.
-- Each observation forms a row.
-- Each type of observational unit forms a table.
+- Каждая переменная формирует столбец.
+- Каждое наблюдение формирует строку.
+- Каждый тип наблюдений формирует таблицу.
 ]
 --
 .pull-right[
-**Characteristics of untidy data:**
+**Характеристики не-чистых данных:**
 
 !@#$%^&*()
 ]
@@ -47,7 +47,7 @@ library(tidyverse)
 ## 
 
 .question[
-What makes this data not tidy?
+Почему эти данные не являются чистыми?
 ]
 
 ```{r hyperwar-airplanes-on-hand, echo=FALSE, out.width="90%", fig.align = "center", caption = "WW2 Army Air Force combat aircraft", out.width = "70%"}
@@ -61,7 +61,7 @@ Source: [Army Air Forces Statistical Digest, WW II](https://www.ibiblio.org/hype
 ---
 
 .question[
-What makes this data not tidy?
+Почему эти данные не являются чистыми?
 ]
 
 <br>
@@ -77,7 +77,7 @@ Source: [Gapminder, Estimated HIV prevalence among 15-49 year olds](https://www.
 ---
 
 .question[
-What makes this data not tidy?
+Почему эти данные не являются чистыми?
 ]
 
 <br>
@@ -92,7 +92,7 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 ---
 
-## Displaying vs. summarising data
+## Отображение vs. обобщение данных
 
 .panelset[
 
