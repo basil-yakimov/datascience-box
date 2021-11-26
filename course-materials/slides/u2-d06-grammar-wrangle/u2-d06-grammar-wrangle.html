@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Grammar of data wrangling</title>
+    <title>Грамматика обращения с данными</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Grammar of data wrangling
+# Грамматика обращения с данными
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -40,47 +40,47 @@ layout: true
 
 class: middle
 
-# Grammar of data wrangling
+# Грамматика обращения с данными
 
 ---
 
-## A grammar of data wrangling...
+## Грамматика обращения с данными...
 
-... based on the concepts of functions as verbs that manipulate data frames
+... основана на концепции функций как глаголов, которые манипулируют фреймами
 
 .pull-left[
 &lt;img src="img/dplyr-part-of-tidyverse.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .midi[
-- `select`: pick columns by name
-- `arrange`: reorder rows
-- `slice`: pick rows using index(es)
-- `filter`: pick rows matching criteria
-- `distinct`: filter for unique rows
-- `mutate`: add new variables
-- `summarise`: reduce variables to values
-- `group_by`: for grouped operations
-- ... (many more)
+- `select`: выбрать столбцы по имени
+- `arrange`: упорядочить строки
+- `slice`: выбрать строки с помощью индекса
+- `filter`: выбрать строки в соответствии с критерием
+- `distinct`: отфильтровать уникальные строки
+- `mutate`: добавить новые переменные
+- `summarise`: редуцировать переменные до значений
+- `group_by`: для групповых операций
+- ... (и многое другое)
 ]
 ]
 
 ---
 
-## Rules of **dplyr** functions
+## Принципы функций **dplyr**
 
-- First argument is *always* a data frame
-- Subsequent arguments say what to do with that data frame
-- Always return a data frame
-- Don't modify in place
+- Первый аргумент - это *всегда* фрейм
+- Последующие аргументы указывают, что сделать с этим фреймом
+- Всегда возвращается фрейм
+- Не делается модификация на месте (в исходном фрейме)
 
 ---
 
-## Data: Hotel bookings
+## Данные: Бринирование отелей
 
-- Data from two hotels: one resort and one city hotel
-- Observations: Each row represents a hotel booking
-- Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be cancelled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
+- Данные по двум отелям: одному курортному и одному городскому
+- Наблюдения: Каждая строка - это бронирование
+- Цель сбора исходных данных: Разработка прогностической модели для классификации бронирований по вероятности отмены ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
 
 
 ```r
@@ -93,7 +93,7 @@ Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master
 
 ---
 
-## First look: Variables
+## Первый взгляд: Переменные
 
 
 ```r
@@ -124,7 +124,7 @@ names(hotels)
 
 ---
 
-## Second look: Overview
+## Второй взгляд: Обзор
 
 
 ```r
@@ -155,9 +155,9 @@ glimpse(hotels)
 
 ---
 
-## Select a single column
+## Выбираем один столбец
 
-View only `lead_time` (number of days between booking and arrival date):
+Просмотрим только `lead_time` (число дней между бронированием и датой заезда):
 
 
 ```r
@@ -179,7 +179,7 @@ select(hotels, lead_time)
 
 ---
 
-## Select a single column
+## Выбираем один столбец
 
 .pull-left[
 
@@ -191,12 +191,12 @@ select(hotels, lead_time)
 ```
 ]
 .pull-right[
-- Start with the function (a verb): `select()`
+- Начинаем с имени функции (глагол): `select()`
 ]
 
 ---
 
-## Select a single column
+## Выбираем один столбец
 
 .pull-left[
 
@@ -208,13 +208,13 @@ select(
 ```
 ]
 .pull-right[
-- Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
+- Начинаем с имени функции (глагол): `select()`
+- Первый аргумент: данные, с которыми нужно работать, `hotels`
 ]
 
 ---
 
-## Select a single column
+## Выбираем один столбец
 
 .pull-left[
 
@@ -226,14 +226,14 @@ select(
 ```
 ]
 .pull-right[
-- Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
-- Second argument: variable we want to select, `lead_time`
+- Начинаем с имени функции (глагол): `select()`
+- Первый аргумент: данные, с которыми нужно работать, `hotels`
+- Второй аргумент: переменная, которую надо выбрать, `lead_time`
 ]
 
 ---
 
-## Select a single column
+## Выбираем один столбец
 
 .pull-left[
 
@@ -258,16 +258,16 @@ select(
 ```
 ]
 .pull-right[
-- Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
-- Second argument: variable we want to select, `lead_time`
-- Result: data frame with 119390 rows and 1 column
+- Начинаем с имени функции (глагол): `select()`
+- Первый аргумент: данные, с которыми нужно работать, `hotels`
+- Второй аргумент: переменная, которую надо выбрать, `lead_time`
+- Результат: фрейм из 119390 строк и одного столбца
 ]
 
 ---
 
 .tip[
-dplyr functions always expect a data frame and always yield a data frame.
+функции dplyr всегда получают фрейм и всегда возвращают фрейм.
 ]
 
 
@@ -290,10 +290,10 @@ select(hotels, lead_time)
 
 ---
 
-## Select multiple columns
+## Выбираем несколько столбцов
 
 
-View only the `hotel` type and `lead_time`:
+Просмотрим только тип отеля `hotel` и `lead_time`:
 
 --
 
@@ -319,13 +319,13 @@ select(hotels, hotel, lead_time)
 --
 .pull-right[
 .question[
-What if we wanted to select these columns, and then arrange the data in descending order of lead time?
+А что, если мы захотим выбрать эти столбцы, а потом еще и упорядочить данные в порядке убывания переменной `lead time`?
 ]
 ]
 
 ---
 
-## Data wrangling, step-by-step
+## Манипулирование данными, шаг за шагом
 
 .pull-left[
 Select:
@@ -351,7 +351,7 @@ hotels %&gt;%
 
 --
 .pull-right[
-Select, then arrange:
+Выбираем, затем упорядочиваем:
 
 ```r
 hotels %&gt;%
@@ -381,14 +381,14 @@ class: middle
 
 ---
 
-## What is a pipe?
+## Что такое pipe?
 
-In programming, a pipe is a technique for passing information from one process to another.
+В программировании, pipe - это техника передачи информации от одного процесса к другому.
 
 --
 
 .pull-left[
-- Start with the data frame `hotels`, and pass it to the `select()` function,
+- Начинаем с фрейма `hotels`, передаем его функции `select()`,
 ]
 .pull-right[
 .small[
@@ -416,13 +416,13 @@ In programming, a pipe is a technique for passing information from one process t
 
 ---
 
-## What is a pipe?
+## Что такое pipe?
 
-In programming, a pipe is a technique for passing information from one process to another.
+В программировании, pipe - это техника передачи информации от одного процесса к другому.
 
 .pull-left[
-- Start with the data frame `hotels`, and pass it to the `select()` function,
-- then we select the variables `hotel` and `lead_time`,
+- Начинаем с фрейма `hotels`, передаем его функции `select()`,
+- затем выбираем переменные `hotel` и `lead_time`,
 ]
 .pull-right[
 .small[
@@ -450,14 +450,14 @@ hotels %&gt;%
 
 ---
 
-## What is a pipe?
+## Что такое pipe?
 
-In programming, a pipe is a technique for passing information from one process to another.
+В программировании, pipe - это техника передачи информации от одного процесса к другому.
 
 .pull-left[
-- Start with the data frame `hotels`, and pass it to the `select()` function,
-- then we select the variables `hotel` and `lead_time`,
-- and then we arrange the data frame by `lead_time` in descending order.
+- Начинаем с фрейма `hotels`, передаем его функции `select()`,
+- затем выбираем переменные `hotel` и `lead_time`,
+- затем упорядочиваем фрейм по переменной `lead_time` в порядке убывания.
 ]
 .pull-right[
 .small[
@@ -485,42 +485,25 @@ hotels %&gt;%
 
 ---
 
-## Aside
+## Исторические заметки
 
-The pipe operator is implemented in the package **magrittr**, though we don't need to load this package explicitly since **tidyverse** does this for us.
-
---
-
-.question[
-Any guesses as to why the package is called magrittr?
-]
-
---
-
-.pull-left[
-&lt;img src="img/magritte.jpg" width="90%" style="display: block; margin: auto;" /&gt;
-]
-.pull-right[
-&lt;img src="img/magrittr.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
+Давным-давно, оператор pipe был реализован в специальном пакете **magrittr** и имел вид `%&gt;%`. Он приобрел огромную популярность, вследствие чего разработчики языка R ввели нативный оператор `|&gt;`, начиная с версии 4.0.0. Теперь пакет **magrittr** больше особо не нужен.
 
 ---
 
-## How does a pipe work?
+## Как работает pipe?
 
-- You can think about the following sequence of actions - find keys, 
-unlock car, start car, drive to work, park.
+- Вы можете думать о такой последовательности действий: найти ключи, открыть машину, завести машину, доехать до работы, припарковаться.
 
 --
-- Expressed as a set of nested functions in R pseudocode this would look like:
+- Если отобразить это в виде вложенных функций в псевдокоде R, это будет выглядеть так:
 
 ```r
 park(drive(start_car(find("keys")), to = "work"))
 ```
 
 --
-- Writing it out using pipes give it a more natural (and easier to read) 
-structure:
+- Если же переписать это с использованием конвейера, все выглядит более натуральным (и лучше читается):
 
 ```r
 find("keys") %&gt;%
@@ -531,12 +514,12 @@ find("keys") %&gt;%
 
 ---
 
-## A note on piping and layering
+## Замечание относительно конвейера и создания слоев в графике
 
-- `%&gt;%` used mainly in **dplyr** pipelines, *we pipe the output of the previous line of code as the first input of the next line of code*
+- `|&gt;` используется в основном в конвейерах **dplyr**, *мы передаем результат предыдущей строки кода в качестве первого аргумента для следующей строки кода*
 
 --
-- `+` used in **ggplot2** plots is used for "layering", *we create the plot in layers, separated by `+`*
+- `+` используется в **ggplot2** для "расслоения", *мы создаем график послойно, разделяя слои через `+`*
 
 ---
 
@@ -606,12 +589,12 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
 
 ---
 
-## Code styling
+## Стиль кода
 
-Many of the styling principles are consistent across `%&gt;%` and `+`:
+Многие стилистические принципы совпадают для `%&gt;%` и `+`:
 
-- always a space before
-- always a line break after (for pipelines with more than 2 lines)
+- всегда оставляем пробел перед оператором
+- всегда переводим строку после оператора (для конвейеров, не умещающихся в одну строку)
 
 ❌
 

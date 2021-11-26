@@ -293,45 +293,24 @@ hotels %>%
 
 ---
 
-## Aside
+## Исторические заметки
 
-The pipe operator is implemented in the package **magrittr**, though we don't need to load this package explicitly since **tidyverse** does this for us.
-
---
-
-.question[
-Any guesses as to why the package is called magrittr?
-]
-
---
-
-.pull-left[
-```{r magritte, echo=FALSE, out.width="90%", caption = "Magritte's pipe"}
-knitr::include_graphics("img/magritte.jpg")
-```
-]
-.pull-right[
-```{r magrittr, echo=FALSE, out.width="100%", caption = "magrittr's pipe"}
-knitr::include_graphics("img/magrittr.jpg")
-```
-]
+Давным-давно, оператор pipe был реализован в специальном пакете **magrittr** и имел вид `%>%`. Он приобрел огромную популярность, вследствие чего разработчики языка R ввели нативный оператор `|>`, начиная с версии 4.0.0. Теперь пакет **magrittr** больше особо не нужен.
 
 ---
 
-## How does a pipe work?
+## Как работает pipe?
 
-- You can think about the following sequence of actions - find keys, 
-unlock car, start car, drive to work, park.
+- Вы можете думать о такой последовательности действий: найти ключи, открыть машину, завести машину, доехать до работы, припарковаться.
 
 --
-- Expressed as a set of nested functions in R pseudocode this would look like:
+- Если отобразить это в виде вложенных функций в псевдокоде R, это будет выглядеть так:
 ```{r eval=FALSE}
 park(drive(start_car(find("keys")), to = "work"))
 ```
 
 --
-- Writing it out using pipes give it a more natural (and easier to read) 
-structure:
+- Если же переписать это с использованием конвейера, все выглядит более натуральным (и лучше читается):
 ```{r eval=FALSE}
 find("keys") %>%
   start_car() %>%
@@ -341,12 +320,12 @@ find("keys") %>%
 
 ---
 
-## A note on piping and layering
+## Замечание относительно конвейера и создания слоев в графике
 
-- `%>%` used mainly in **dplyr** pipelines, *we pipe the output of the previous line of code as the first input of the next line of code*
+- `|>` используется в основном в конвейерах **dplyr**, *мы передаем результат предыдущей строки кода в качестве первого аргумента для следующей строки кода*
 
 --
-- `+` used in **ggplot2** plots is used for "layering", *we create the plot in layers, separated by `+`*
+- `+` используется в **ggplot2** для "расслоения", *мы создаем график послойно, разделяя слои через `+`*
 
 ---
 
@@ -395,12 +374,12 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
 
 ---
 
-## Code styling
+## Стиль кода
 
-Many of the styling principles are consistent across `%>%` and `+`:
+Многие стилистические принципы совпадают для `%>%` и `+`:
 
-- always a space before
-- always a line break after (for pipelines with more than 2 lines)
+- всегда оставляем пробел перед оператором
+- всегда переводим строку после оператора (для конвейеров, не умещающихся в одну строку)
 
 `r emo::ji("x")`
 
