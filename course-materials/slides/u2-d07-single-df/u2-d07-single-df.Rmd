@@ -1,5 +1,5 @@
 ---
-title: "Working with a single data frame"
+title: "Работа с единственным фреймом"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -22,18 +22,18 @@ library(tidyverse)
 
 class: middle
 
-# .hand[We...]
+# .hand[У нас...]
 
-.huge[.green[have]] .hand[a single data frame]
+.huge[.green[есть]] .hand[один фрейм]
 
-.huge[.pink[want]] .hand[to slice it, and dice it, and juice it, and process it]
+.huge[.pink[и мы хотим]] .hand[нарезать, пошинковать и выжать из него максимум]
 
 ---
 
-## Data: Hotel bookings
+## Данные: бронирование отелей
 
-- Data from two hotels: one resort and one city hotel
-- Observations: Each row represents a hotel booking
+- Данные по двум отелям: одному курортному и одному городскому
+- Наблюдения: Каждая строка - это бронирование
 
 ```{r message=FALSE}
 hotels <- read_csv("data/hotels.csv")
@@ -43,99 +43,99 @@ hotels <- read_csv("data/hotels.csv")
 
 class: middle
 
-# `select`, `arrange`, and `slice`
+# `select`, `arrange`, и `slice`
 
 ---
 
-## `select` to keep variables
+## `select` для выбора переменных
 
 ```{r}
-hotels %>%
+hotels |>
   select(hotel, lead_time) #<<
 ```
 
 ---
 
-## `select` to exclude variables
+## `select` для исключения переменных
 
 .small[
 ```{r output.lines=18}
-hotels %>%
+hotels |>
   select(-agent) #<<
 ```
 ]
 
 ---
 
-## `select` a range of variables
+## `select` для выбора диапазона переменных
 
 ```{r}
-hotels %>%
+hotels |>
   select(hotel:arrival_date_month) #<<
 ```
 
 ---
 
-## `select` variables with certain characteristics
+## `select` для выбора переменных с особыми свойствами
 
 ```{r}
-hotels %>%
+hotels |>
   select(starts_with("arrival")) #<<
 ```
 
 ---
 
-## `select` variables with certain characteristics
+## `select` для выбора переменных с особыми свойствами
 
 ```{r}
-hotels %>%
+hotels |>
   select(ends_with("type")) #<<
 ```
 
 ---
 
-## Select helpers
+## Функции-помощники
 
-- `starts_with()`: Starts with a prefix
-- `ends_with()`: Ends with a suffix
-- `contains()`: Contains a literal string
-- `num_range()`: Matches a numerical range like x01, x02, x03
-- `one_of()`: Matches variable names in a character vector
-- `everything()`: Matches all variables
-- `last_col()`: Select last variable, possibly with an offset
-- `matches()`: Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)
+- `starts_with()`: начинается с префикса
+- `ends_with()`: заканчивается суффиксом
+- `contains()`: содержит строку
+- `num_range()`: соответствует числовому диапазону типа x01, x02, x03
+- `one_of()`: соответствует перечню имен из текстового вектора
+- `everything()`: соответствует всем переменным
+- `last_col()`: выбирает последнюю переменную, возможно со смещением
+- `matches()`: соответствует регулярному выражению (последовательность символов, отражающая некую структуру, которую нужно найти в тексте)
 
 .footnote[
-See help for any of these functions for more info, e.g. `?everything`.
+См. справку по этим функциям, например `?everything`.
 ]
 
 ---
 
-## `arrange` in ascending / descending order
+## `arrange` для упорядочивания в порядке возрастания/убывания
 
 .pull-left[
 ```{r}
-hotels %>%
-  select(adults, children, babies) %>%
+hotels |>
+  select(adults, children, babies) |>
   arrange(babies) #<<
 ```
 ]
 .pull-right[
 ```{r}
-hotels %>%
-  select(adults, children, babies) %>%
+hotels |>
+  select(adults, children, babies) |>
   arrange(desc(babies)) #<<
 ```
 ]
 
 ---
 
-## `slice` for certain row numbers
+## `slice` для выбора строк по номерам
 
 .midi[
 ```{r output.lines=17}
 # first five
-hotels %>%
+hotels |>
   slice(1:5) #<<
 ```
 ]
@@ -143,18 +143,17 @@ hotels %>%
 ---
 
 .tip[
-In R, you can use the `#` for adding comments to your code. 
-Any text following `#` will be printed as is, and won't be run as R code.
-This is useful for leaving comments in your code and for temporarily disabling 
-certain lines of code while debugging.
+В R вы можете использовать символ `#` для добавления комментариев к коду. 
+Любой текст после `#` будет распечатан как есть и не будет выполняться как код на языке R.
+Это полезно для для комментирования кода и для временного отключения определенных строк кода при отладке.
 ]
 
 .small[
 ```{r output.lines=10}
-hotels %>%
-  # slice the first five rows  # this line is a comment
-  #select(hotel) %>%           # this one doesn't run
-  slice(1:5)                   # this line runs
+hotels |>
+  # slice the first five rows  # это строка комментария
+  #select(hotel) |>           # эта не будет выполнена
+  slice(1:5)                   # а эта будет выполняться
 ```
 ]
 
@@ -166,75 +165,75 @@ class: middle
 
 ---
 
-## `filter` to select a subset of rows
+## `filter` для выбора подмножества строк
 
 .midi[
 ```{r output.lines=17}
-# bookings in City Hotels
-hotels %>%
+# бронирования в городском отеле
+hotels |>
   filter(hotel == "City Hotel") #<<
-````
+```
 ]
 
 ---
 
-## `filter` for many conditions at once
+## `filter` со множеством условий одновременно
 
 ```{r}
-hotels %>%
+hotels |>
   filter( 
     adults == 0,     #<<
     children >= 1    #<<
-    ) %>% 
+    ) |> 
   select(adults, babies, children)
 ```
 
 ---
 
-## `filter` for more complex conditions
+## `filter` для более сложных условий
 
 ```{r}
-# bookings with no adults and some children or babies in the room
-hotels %>%
+# бронирования без взрослых, но с детьми либо младенцами в номере
+hotels |>
   filter( 
     adults == 0,     
     children >= 1 | babies >= 1     # | means or  #<<
-    ) %>%
+    ) |>
   select(adults, babies, children)
 ```
 
 ---
 
-## Logical operators in R
+## Логические операторы в R
 
 <br>
 
-operator    | definition                   || operator     | definition
+оператор    | определение                  || оператор     | определение
 ------------|------------------------------||--------------|----------------
-`<`         | less than                    ||`x`&nbsp;&#124;&nbsp;`y`     | `x` OR `y` 
-`<=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA`
-`>`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA`
-`>=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y`
-`==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y`
-`!=`        |	not equal to                 ||`!x`          | not `x`
-`x & y`     | `x` AND `y`                  ||              |
+`<`         | меньше                       ||`x`&nbsp;&#124;&nbsp;`y`     | `x` ИЛИ `y` 
+`<=`        |	меньше или равно             ||`is.na(x)`    | проверяет `x` на предмет равенства `NA`
+`>`         | больше                       ||`!is.na(x)`   | проверяет `x` на предмет неравенства `NA`
+`>=`        |	больше или равно             ||`x %in% y`    | проверяет `x` на предмет вхождения в `y`
+`==`        |	в точности равно             ||`!(x %in% y)` | проверяет `x` на предмет отсутствия в `y`
+`!=`        |	не равно                     ||`!x`          | не `x`
+`x & y`     | `x` И `y`                    ||              |
 
 ---
 
 .your-turn[
-### Your turn!
+### Ваша очередь!
 
-Time to actually play around with the Hotels dataset!
+Пришло время поэкспериментировать с набором данных по отелям!
 
-- Go to RStudio Cloud and start `AE 04 - Hotels + Data wrangling`.
-- Open the R Markdown document and complete Exercises 1 - 4.
+- Переходите в RStudio и начинайте `AE 04 - Hotels + Data wrangling`.
+- Откройте документ R Markdown и выполните упражнения 1 - 4.
 ]
 
 ---
 
 class: middle
 
-# `distinct` and `count`
+# `distinct` и `count`
 
 ---
 
@@ -243,22 +242,22 @@ options(dplyr.print_max = 20)
 ```
 
 
-## `distinct` to filter for unique rows
+## `distinct` для выбора уникальных строк
 
-... and `arrange` to order alphabetically
+... и `arrange` для упорядочивания по алфавиту
 
 .small[
 .pull-left[
 ```{r}
-hotels %>% 
-  distinct(market_segment) %>% #<<
+hotels |> 
+  distinct(market_segment) |> #<<
   arrange(market_segment)
 ```
 ]
 .pull-right[
 ```{r output.lines=13}
-hotels %>% 
-  distinct(hotel, market_segment) %>% #<<
+hotels |> 
+  distinct(hotel, market_segment) |> #<<
   arrange(hotel, market_segment)
 ```
 ]
@@ -266,71 +265,71 @@ hotels %>%
 
 ---
 
-## `count` to create frequency tables
+## `count` для создания таблицы частот
 
 .pull-left[
 ```{r}
-# alphabetical order by default
-hotels %>%
+# алфавитный порядок уже по умолчанию
+hotels |>
   count(market_segment) #<<
 ```
 ]
 --
 .pull-right[
 ```{r}
-# descending frequency order
-hotels %>%
+# упорядочиваем по убыванию частот
+hotels |>
   count(market_segment, sort = TRUE) #<<
 ```
 ]
 
 ---
 
-## `count` and `arrange`
+## `count` и `arrange`
 
 .pull-left[
 ```{r}
-# ascending frequency order
-hotels %>%
-  count(market_segment) %>%
+# в порядке возрастания частоты
+hotels |>
+  count(market_segment) |>
   arrange(n) #<<
 ```
 ]
 .pull-right[
 ```{r}
-# descending frequency order
-# just like adding sort = TRUE
-hotels %>%
-  count(market_segment) %>%
+# в порядке убывания частоты
+# то же, что sort = TRUE
+hotels |>
+  count(market_segment) |>
   arrange(desc(n)) #<<
 ```
 ]
 
 ---
 
-## `count` for multiple variables
+## `count` для работы с множеством переменных
 
 ```{r}
-hotels %>%
+hotels |>
   count(hotel, market_segment) #<<
 ```
 
 ---
 
-## order matters when you `count`
+## порядок имеет значение при использовании `count`
 
 .midi[
 .pull-left[
 ```{r}
-# hotel type first
-hotels %>%
+# сначала тип отеля
+hotels |>
   count(hotel, market_segment) #<<
 ```
 ]
 .pull-right[
 ```{r}
-# market segment first
-hotels %>%
+# сначала сегмент рынка
+hotels |>
   count(market_segment, hotel) #<<
 ```
 ]
@@ -339,10 +338,10 @@ hotels %>%
 ---
 
 .your-turn[
-### Your turn!
+### Ваша очередь!
 
-- Go back to RStudio Cloud and continue `AE 04 - Hotels + Data wrangling`.
-- Open the R Markdown document and complete Exercises 5 and 6.
+- Возвращайтесь в RStudio и продолжайте `AE 04 - Hotels + Data wrangling`.
+- Откройте документ R Markdown и выполните упражнения 5 и 6.
 ]
 
 ---
@@ -353,41 +352,41 @@ class: middle
 
 ---
 
-## `mutate` to add a new variable
+## `mutate` для добавления новой переменной
 
 ```{r}
-hotels %>%
-  mutate(little_ones = children + babies) %>% #<<
-  select(children, babies, little_ones) %>%
+hotels |>
+  mutate(little_ones = children + babies) |> #<<
+  select(children, babies, little_ones) |>
   arrange(desc(little_ones))
 ```
 
 ---
 
-## Little ones in resort and city hotels
+## Малыши в курортном и городском отеле
 
 .midi[
 .pull-left[
 ```{r}
-# Resort Hotel
-hotels %>%
-  mutate(little_ones = children + babies) %>%
+# Курорт
+hotels |>
+  mutate(little_ones = children + babies) |>
   filter(
     little_ones >= 1,
     hotel == "Resort Hotel"
-    ) %>%
+    ) |>
   select(hotel, little_ones)
 ```
 ]
 .pull-right[
 ```{r}
-# City Hotel
-hotels %>%
-  mutate(little_ones = children + babies) %>%
+# Городской отель
+hotels |>
+  mutate(little_ones = children + babies) |>
   filter(
     little_ones >= 1,
     hotel == "City Hotel"
-    )  %>%
+    )  |>
   select(hotel, little_ones)
 ```
 ]
@@ -396,14 +395,14 @@ hotels %>%
 ---
 
 .question[
-What is happening in the following chunk?
+Что происходит в следующем фрагменте кода?
 ]
 
 .midi[
 ```{r}
-hotels %>%
-  mutate(little_ones = children + babies) %>%
-  count(hotel, little_ones) %>%
+hotels |>
+  mutate(little_ones = children + babies) |>
+  count(hotel, little_ones) |>
   mutate(prop = n / sum(n))
 ```
 ]
@@ -412,15 +411,15 @@ hotels %>%
 
 class: middle
 
-# `summarise` and `group_by`
+# `summarise` и `group_by`
 
 ---
 
-## `summarise` for summary stats
+## `summarise` для описательных статистик
 
 ```{r}
-# mean average daily rate for all bookings
-hotels %>%
+# средняя ежедневная цена по всем бронированиям
+hotels |>
   summarise(mean_adr = mean(adr)) #<<
 ```
 
@@ -428,23 +427,21 @@ hotels %>%
 
 .pull-left-wide[
 .tip[
-`summarise()` changes the data frame entirely, it collapses rows down to a single 
-summary statistic, and removes all columns that are irrelevant to the calculation.
+`summarise()` всецело изменяет фрейм, сворачивая строки до единственной описательной статистики и убирает все столбцы, не имеющие отношения к расчетам.
 ]
 ]
 
 ---
 
 .tip[
-`summarise()` also lets you get away with being sloppy and not naming your new 
-column, but that's not recommended!
+`summarise()` также допускает небольшую неряшливость и позволяет не давать имена новым столбцам, но это не рекомендуется!
 ]
 
 .pull-left[
 `r emo::ji("x")`
 
 ```{r}
-hotels %>%
+hotels |>
   summarise(mean(adr))
 ```
 ]
@@ -452,50 +449,50 @@ hotels %>%
 `r emo::ji("white_check_mark")`
 
 ```{r}
-hotels %>%
+hotels |>
   summarise(mean_adr = mean(adr))
 ```
 ]
 
 ---
 
-## `group_by` for grouped operations
+## `group_by` для сгруппированных операций
 
 ```{r}
-# mean average daily rate for all booking at city and resort hotels
-hotels %>%
-  group_by(hotel) %>% #<<
+# средняя ежедневная цена по всем бронированиям в городском и курортном отелях
+hotels |>
+  group_by(hotel) |> #<<
   summarise(mean_adr = mean(adr))
 ```
 
 ---
 
-## Calculating frequencies
+## Расчет частот
 
-The following two give the same result, so `count` is simply short for `group_by` then determine frequencies 
+Два следующих примера дают одинаковый результат, поэтому `count` - это просто сокращение для `group_by` при расчете частот
 
 .pull-left[
 ```{r}
-hotels %>%
-  group_by(hotel) %>%
+hotels |>
+  group_by(hotel) |>
   summarise(n = n())
 ```
 ]
 .pull-right[
 ```{r}
-hotels %>%
+hotels |>
   count(hotel)
 ```
 ]
 
 ---
 
-## Multiple summary statistics
+## Несколько описательных статистик
 
-`summarise` can be used for multiple summary statistics as well
+`summarise` можно применять для расчета множества описательных статистик
 
 ```{r}
-hotels %>%
+hotels |>
   summarise(
     min_adr = min(adr),
     mean_adr = mean(adr),
@@ -507,10 +504,10 @@ hotels %>%
 ---
 
 .your-turn[
-### Your turn!
+### Ваша очередь!
 
-Time to actually play around with the Hotels dataset!
+Пришло время по-настоящему поэкспериментировать с набором данных по отелям!
 
-- Go to RStudio Cloud and start `AE 04 - Hotels + Data wrangling`.
-- Open the R Markdown document and complete Exercises 7 and 8.
+- Переходите в RStudio и начинайте `AE 04 - Hotels + Data wrangling`.
+- Откройте документ R Markdown и выполните упражнения 7 и 8.
 ]
