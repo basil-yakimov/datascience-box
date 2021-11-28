@@ -1,5 +1,5 @@
 ---
-title: "Working with multiple data frames"
+title: "Работа с несколькими фреймами"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -27,11 +27,11 @@ options(
 
 class: middle
 
-# .hand[We...]
+# .hand[Мы...]
 
-.huge[.green[have]] .hand[multiple data frames]
+.huge[.green[имеем]] .hand[несколько фреймов]
 
-.huge[.pink[want]] .hand[to bring them together]
+.huge[.pink[хотим]] .hand[собрать информацию вместе]
 
 ---
 
@@ -41,9 +41,9 @@ dates <- read_csv("data/scientists/dates.csv")
 works <- read_csv("data/scientists/works.csv")
 ```
 
-## Data: Women in science 
+## Данные: Женщины в науке 
 
-Information on 10 women in science who changed the world
+Информация о 10 женщинах, изменивших мир
 
 .small[
 ```{r echo=FALSE}
@@ -58,7 +58,7 @@ Source: [Discover Magazine](https://www.discovermagazine.com/the-sciences/meet-1
 
 ---
 
-## Inputs
+## Исходные данные
 
 .panelset[
 
@@ -84,7 +84,7 @@ works
 
 ---
 
-## Desired output
+## Желаемый результат
 
 ```{r echo=FALSE}
 professions %>%
@@ -94,7 +94,7 @@ professions %>%
 
 ---
 
-## Inputs, reminder
+## Исходные данные, детали
 
 .pull-left[
 ```{r}
@@ -115,30 +115,29 @@ nrow(works)
 
 class: middle
 
-# Joining data frames
+# Объединение фреймов
 
 ---
 
-## Joining data frames
+## Объединение фреймов
 
 ```{r eval=FALSE}
 something_join(x, y)
 ```
 
-- `left_join()`: all rows from x
-- `right_join()`: all rows from y
-- `full_join()`: all rows from both x and y
-- `semi_join()`: all rows from x where there are matching values in y, keeping just columns from x
-- `inner_join()`: all rows from x where there are matching values in y, return 
-all combination of multiple matches in the case of multiple matches
-- `anti_join()`: return all rows from x where there are not matching values in y, never duplicate rows of x
+- `left_join()`: все строки из `x`
+- `right_join()`: все строки из `y`
+- `full_join()`: все строки из `x` и `y`
+- `semi_join()`: все строки из `x`, для которых есть соответствие в `y`, сохраняя только столбцы из `x`
+- `inner_join()`: все строки из `x`, для которых есть соответствие в `y`, возвращаются все комбинации при множественных совпадениях 
+- `anti_join()`: возвращаются все строки из `x`, для которых нет совпадений в `y`, никогда не дуплицируются строки из `x`
 - ...
  
 ---
 
-## Setup
+## Настройка
 
-For the next few slides...
+Для следующих нескольких слайдов...
 
 .pull-left[
 ```{r echo=FALSE}
@@ -310,7 +309,7 @@ dates %>%
 
 ---
 
-## Putting it altogether
+## Собираем все вместе
 
 ```{r}
 professions %>%
@@ -322,16 +321,16 @@ professions %>%
 
 class: middle
 
-# Case study: Student records
+# Пример исследования: Студенты
 
 ---
 
-## Student records
+## Студенты
 
-- Have:
-  - Enrolment: official university enrolment records
-  - Survey: Student provided info missing students who never filled it out and including students who filled it out but dropped the class
-- Want: Survey info for all enrolled in class 
+- Имеем:
+  - Enrolment: официальные ведомости университета о записи студентов на курсы
+  - Survey: предоставленные студентами сведения о тех, кто посещал занятия без записи, либо не завершил курс
+- Надо: сведения о всех студентах, посещавших занятия 
 
 --
 
@@ -353,7 +352,7 @@ survey
 
 ---
 
-## Student records
+## Студенты
 
 .panelset[
 
@@ -384,16 +383,16 @@ survey %>%
 
 class: middle
 
-# Case study: Grocery sales
+# Пример исследования: Продажа продуктов
 
 ---
 
-## Grocery sales
+## Продажа продуктов
 
-- Have:
-  - Purchases: One row per customer per item, listing purchases they made
-  - Prices: One row per item in the store, listing their prices
-- Want: Total revenue
+- Имеем:
+  - Purchases: в каждой строке покупка одного товара одним покупателем
+  - Prices: в каждой строке цена одного товара
+- Надо: Общая выручка
 
 --
 
@@ -415,7 +414,7 @@ prices
 
 ---
 
-## Grocery sales
+## Продажа продуктов
 
 .panelset[
 
