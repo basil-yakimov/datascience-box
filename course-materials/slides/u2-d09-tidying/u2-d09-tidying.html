@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Tidying data</title>
+    <title>Трансформация данных</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Tidying data
+# Трансформация данных
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -40,15 +40,15 @@ layout: true
 
 class: middle
 
-# .hand[We...]
+# .hand[Мы...]
 
-.huge[.green[have]] .hand[data organised in an unideal way for our analysis]
+.huge[.green[имеем]] .hand[данные, организованные неидеально для нашего анализа]
 
-.huge[.pink[want]] .hand[to reorganise the data to carry on with our analysis]
+.huge[.pink[хотим]] .hand[реорганизовать данные для продолжения анализа]
 
 ---
 
-## Data: Sales
+## Данные: Продажи
 
 
 
@@ -56,7 +56,7 @@ class: middle
 &lt;br&gt;
 
 .pull-left[
-### .green[We have...]
+### .green[У нас есть...]
 
 ```
 ## # A tibble: 2 x 4
@@ -69,7 +69,7 @@ class: middle
 
 --
 .pull-right[
-### .pink[We want...]
+### .pink[Нам необходимо...]
 
 ```
 ## # A tibble: 6 x 3
@@ -86,35 +86,29 @@ class: middle
 
 ---
 
-## A grammar of data tidying
+## Грамматика "очистки" данных
 
 .pull-left[
 &lt;img src="img/tidyr-part-of-tidyverse.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-The goal of tidyr is to help you tidy your data via
+Цель пакета `tidyr` - помочь "очистить" ваши данные путем
 
-- pivoting for going between wide and long data
-- splitting and combining character columns
-- nesting and unnesting columns
-- clarifying how `NA`s should be treated
+- трансформации для перехода между широким и длинным форматами
+- разделения и объединения текстовых столбцов
+- организации вложенных столбцов
+- прояснения того, как должны быть обработаны `NA`
 ]
 
 ---
 
 class: middle
 
-# Pivoting data
+# Трансформация данных
 
 ---
 
-## Not this...
-
-&lt;img src="img/pivot.gif" width="70%" style="display: block; margin: auto;" /&gt;
-
----
-
-## but this!
+## Смысл трансформации
 
 .center[
 &lt;img src="img/tidyr-longer-wider.gif" width="45%" style="background-color: #FDF6E3" style="display: block; margin: auto;" /&gt;
@@ -122,11 +116,11 @@ class: middle
 
 ---
 
-## Wider vs. longer
+## Широкий vs. длинный
 
 .pull-left[
-### .green[wider]
-more columns
+### .green[шире]
+больше столбцов
 
 ```
 ## # A tibble: 2 x 4
@@ -139,8 +133,8 @@ more columns
 
 --
 .pull-right[
-### .pink[longer]
-more rows
+### .pink[длиннее]
+больше строк
 
 ```
 ## # A tibble: 6 x 3
@@ -160,7 +154,7 @@ more rows
 ## `pivot_longer()`
 
 .pull-left[
-- `data` (as usual)
+- `data` (как обычно)
 ]
 .pull-right[
 
@@ -179,8 +173,8 @@ pivot_longer(
 ## `pivot_longer()`
 
 .pull-left[
-- `data` (as usual)
-- `cols`: columns to pivot into longer format 
+- `data` (как обычно)
+- `cols`: столбцы, которые надо трансформировать в длинный формат
 ]
 .pull-right[
 
@@ -199,9 +193,9 @@ pivot_longer(
 ## `pivot_longer()`
 
 .pull-left[
-- `data` (as usual)
-- `cols`: columns to pivot into longer format 
-- `names_to`: name of the column where column names of pivoted variables go (character string)
+- `data` (как обычно)
+- `cols`: столбцы, которые надо трансформировать в длинный формат
+- `names_to`: имя столбца, куда попадут имена столбцов трансформированных переменных
 ]
 .pull-right[
 
@@ -220,10 +214,10 @@ pivot_longer(
 ## `pivot_longer()`
 
 .pull-left[
-- `data` (as usual)
-- `cols`: columns to pivot into longer format 
-- `names_to`: name of the column where column names of pivoted variables go (character string)
-- `values_to`: name of the column where data in pivoted variables go (character string)
+- `data` (как обычно)
+- `cols`: столбцы, которые надо трансформировать в длинный формат
+- `names_to`: имя столбца, куда попадут имена столбцов трансформированных переменных
+- `values_to`: имя столбца, куда попадут данные из трансформированных переменных
 ]
 .pull-right[
 
@@ -239,15 +233,15 @@ pivot_longer(
 
 ---
 
-## Customers `\(\rightarrow\)` purchases
+## Клиенты `\(\rightarrow\)` покупки
 
 
 ```r
 purchases &lt;- customers %&gt;%
 * pivot_longer(
-*   cols = item_1:item_3,  # variables item_1 to item_3
-*   names_to = "item_no",  # column names -&gt; new column called item_no
-*   values_to = "item"     # values in columns -&gt; new column called item
+*   cols = item_1:item_3,  # переменные от item_1 до item_3
+*   names_to = "item_no",  # имена столбцов -&gt; в новый столбец с именем item_no
+*   values_to = "item"     # значения в столбцах -&gt; в новый столбец с именем item
 *   )
 
 purchases
@@ -267,9 +261,9 @@ purchases
 
 ---
 
-## Why pivot?
+## Зачем трансформировать?
 
-Most likely, because the next step of your analysis needs it
+Скорее всего, потому что этого требует следующий этап анализа
 
 --
 
@@ -312,12 +306,12 @@ purchases %&gt;%
 
 ---
 
-## Purchases `\(\rightarrow\)` customers
+## Покупки `\(\rightarrow\)` клиенты
 
 .pull-left-narrow[
-- `data` (as usual)
-- `names_from`: which column in the long format contains the what should be column names in the wide format
-- `values_from`: which column in the long format contains the what should be values in the new columns in the wide format
+- `data` (как обычно)
+- `names_from`: какой столбец в длинном формате содержит то, что будет именами столбцов в широком формате
+- `values_from`: какой столбец в длинном формате содержит то, что будет содержаться в новых столбцах в широком формате
 ]
 .pull-right-wide[
 
@@ -342,7 +336,7 @@ purchases %&gt;%
 
 class: middle
 
-# Case study: Approval rating of Donald Trump
+# Пример исследования: Рейтинг одобрения Дональда Трампа
 
 ---
 
@@ -354,7 +348,7 @@ Source: [FiveThirtyEight](https://projects.fivethirtyeight.com/trump-approval-ra
 
 ---
 
-## Data
+## Данные
 
 
 
@@ -377,30 +371,30 @@ trump
 ##  8 Adults   2020-10-01     42.7        53.3
 ##  9 Adults   2020-09-30     42.2        53.7
 ## 10 Voters   2020-09-30     44.2        52.7
-## # … with 2,692 more rows
+## # ... with 2,692 more rows
 ```
 
 ---
 
-## Goal
+## Цель
 
 .pull-left-wide[
-&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 --
 .pull-right-narrow[
-**Aesthetic mappings:**  
+**Эстетики:**  
 ✅  x = `date`  
 ❌      y = `rating_value`  
 ❌      color = `rating_type`
 
-**Facet:**  
-✅  `subgroup` (Adults and Voters)
+**Панели:**  
+✅  `subgroup` (Взрослые и Избиратели)
 ]
 
 ---
 
-## Pivot
+## Трансформация
 
 
 ```r
@@ -431,7 +425,7 @@ trump_longer
 
 ---
 
-## Plot
+## График
 
 
 ```r
@@ -441,7 +435,7 @@ ggplot(trump_longer,
   facet_wrap(~ subgroup)
 ```
 
-&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-22-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-21-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -457,17 +451,17 @@ ggplot(trump_longer,
   facet_wrap(~ subgroup) +
 * scale_color_manual(values = c("darkgreen", "orange")) +
 * labs(
-*   x = "Date", y = "Rating",
+*   x = "Дата", y = "Рейтинг",
 *   color = NULL,
-*   title = "How (un)popular is Donald Trump?",
-*   subtitle = "Estimates based on polls of all adults and polls of likely/registered voters",
+    title = "Насколько (не)популярен Дональд Трамп?", 
+    subtitle = "Оценки на основе опроса всех взрослых и опроса зарегистрированных избирателей", 
 *   caption = "Source: FiveThirtyEight modeling estimates"
 * )
 ```
 ]
 
 .panel[.panel-name[Plot]
-&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-23-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-22-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 ]
 
 ]
@@ -486,10 +480,10 @@ ggplot(trump_longer,
   facet_wrap(~ subgroup) +
   scale_color_manual(values = c("darkgreen", "orange")) + 
   labs( 
-    x = "Date", y = "Rating", 
-    color = NULL, 
-    title = "How (un)popular is Donald Trump?", 
-    subtitle = "Estimates based on polls of all adults and polls of likely/registered voters", 
+    x = "Дата", y = "Рейтинг",
+    color = NULL,
+    title = "Насколько (не)популярен Дональд Трамп?", 
+    subtitle = "Оценки на основе опроса всех взрослых и опроса зарегистрированных избирателей", 
     caption = "Source: FiveThirtyEight modeling estimates" 
   ) + 
 * theme_minimal() +
@@ -498,7 +492,7 @@ ggplot(trump_longer,
 ]
 
 .panel[.panel-name[Plot]
-&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-24-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d09-tidying_files/figure-html/unnamed-chunk-23-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 ]
 
 ]
