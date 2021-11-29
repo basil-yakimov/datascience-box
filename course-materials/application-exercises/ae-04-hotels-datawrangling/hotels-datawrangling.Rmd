@@ -1,42 +1,42 @@
 ---
-title: "Hotel bookings - data wrangling"
-author: "Mine Çetinkaya-Rundel"
+title: "Бронирование отелей - манипулирование данными"
+author: "Mine Çetinkaya-Rundel translated by Basil Yakimov"
 output: github_document
 ---
 
-```{r load-pkg, message = FALSE}
+```{r load-pkg, message = FALSE, warning=FALSE}
 library(tidyverse)
 library(skimr)
 ```
 
-```{r load-data, message = FALSE}
+```{r load-data, message = FALSE, warning=FALSE}
 # From TidyTuesday: https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md
 hotels <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/hotels.csv")
 ```
 
-## Exercises
+## Упражнения
 
-### Exercise 1.
+### Упражнение 1.
 
-Warm up!
-Take a look at an overview of the data with the `skim()` function.
+Разминка!
+Взгляните на обзор данных, который формирует функция `skim()`.
 
-**Note:** I already gave you the answer to this exercise.
-You just need to knit the document and view the output.
-A definition of all variables is given in the [Data dictionary] section at the end, though you don't need to familiarize yourself with all variables in order to work through these exercises.
+**Примечание:** Решение уже приведено.
+Ваша задача - просто собрать документ и посмотреть результат.
+Описание всех переменных приведено в секции [Data dictionary] в конце документа, хотя вам не нужно досконально разбираться во всех переменных, чтобы выполнить упражнения.
 
 ```{r hotels-skim}
 skim(hotels)
 ```
 
-### Exercise 2.
+### Упражнение 2.
 
-Are people traveling on a whim?
-Let's see...
+Путешествуют ли люди из прихоти?
+Давайте посмотрим...
 
-Fill in the blanks for filtering for hotel bookings where the guest is **not** from the US (`country` code `"USA"`) and the `lead_time` is less than 1 day.
+Заполните пропуски для фильтрования бронирований, где гость **не** из США (`country` code `"USA"`) и `lead_time` меньше одного дня.
 
-**Note:** You will need to set `eval=TRUE` when you have an answer you want to try out.
+**Примечание:** Вам нужно установить `eval=TRUE`, когда код будет завершен и его нужно будет запустить.
 
 ```{r travel-whim, eval=FALSE}
 hotels %>%
@@ -46,97 +46,96 @@ hotels %>%
     )
 ```
 
-### Exercise 3.
+### Упражнение 3.
 
-How many bookings involve at least 1 child **or** baby?
+В скольких бронированиях фигурирует хотя бы один ребенок (child) **или** младенец (baby)?
 
-In the following chunk, replace
+В следующем фрагменте кода замените:
 
--   `[AT LEAST]` with the logical operator for "at least" (in two places)
--   `[OR]` with the logical operator for "or"
+-   `[ХОТЯ БЫ]` на логический оператор "хотя бы" (в двух местах)
+-   `[ИЛИ]` на логический оператор "или"
 
-**Note:** You will need to set `eval=TRUE` when you have an answer you want to try out.
+**Примечание:** Вам нужно установить `eval=TRUE`, когда код будет завершен и его нужно будет запустить.
 
 ```{r some-children, eval=FALSE}
 hotels %>%
   filter(
-    children [AT LEAST] 1 [OR] babies [AT LEAST] 1
+    children [ХОТЯ БЫ] 1 [ИЛИ] babies [ХОТЯ БЫ] 1
     )
 ```
 
-### Exercise 4.
+### Упражнение 4.
 
-Do you think it's more likely to find bookings with children or babies in city hotels or resort hotels?
-Test your intuition.
-Using `filter()` determine the number of bookings in resort hotels that have more than 1 child **or** baby in the room?
-Then, do the same for city hotels, and compare the numbers of rows in the resulting filtered data frames.
+Как вы думаете: где более вероятно обнаружить бронирования с детьми и младенцами? В городском отеле или курортном? Проверьте свою интуицию.
+Используя `filter()`, определите число бронирований в курортном отеле, в которых фигурирует более одного ребенка (child) **или** младенца (baby) в номере.
+Затем, сделайте то же самое для городского отеля и сравните число строк в полученных фреймах.
 
 ```{r resort-children}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
 ```{r city-children}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
-### Exercise 5.
+### Упражнение 5.
 
-Create a frequency table of the number of `adults` in a booking.
-Display the results in descending order so the most common observation is on top.
-What is the most common number of adults in bookings in this dataset?
-Are there any surprising results?
+Создайте таблицу частот числа взрослых (`adults`) в бронированиях.
+Отобразите результаты в порядке убывания, так что наиболее распространенный вариант был сверху.
+Какое число взрослых в бронировани встречается чаще всего в этом наборе данных?
+Есть ли какие-нибудь неожиданные результаты?
 
-**Note:** Don't forget to label your R chunk as well (where it says `label-me-1`).
-Your label should be short, informative, and shouldn't include spaces.
-It also shouldn't repeat a previous label, otherwise R Markdown will give you an error about repeated R chunk labels.
+**Примечание:** Не забудьте дать имя вашему фрагменту кода (там, где сейчас указано `label-me-1`).
+Имя должно быть коротким, информативным и не должно содержать пробелов.
+Оно также не должно повторять имя предыдущего фрагмента, иначе R Markdown выдаст ошибку о повторяющихся именах фрагментов.
 
 ```{r label-me-1}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
-### Exercise 6.
+### Упражнение 6.
 
-Repeat Exercise 5, once for canceled bookings (`is_canceled` coded as 1) and once for not canceled bookings (`is_canceled` coded as 0).
-What does this reveal about the surprising results you spotted in the previous exercise?
+Повторите Упражнение 5 для отмененных бронирований (`is_canceled` закодирован как 1) и для неотмененных бронирований (`is_canceled` закодирован как 0).
+Что это говорит о неожиданных результатах, которые вы заметили в предыдущем упражнении?
 
-**Note:** Don't forget to label your R chunk as well (where it says `label-me-2`).
+**Примечание:** Не забудьте дать имя вашему фрагменту кода (там, где сейчас указано `label-me-2`).
 
 ```{r label-me-2}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
-### Exercise 7.
+### Упражнение 7.
 
-Calculate minimum, mean, median, and maximum average daily rate (`adr`) grouped by `hotel` type so that you can get these statistics separately for resort and city hotels.
-Which type of hotel is higher, on average?
+Рассчитайте минимум, среднее, медиану и максимум среднесуточной цены (`adr`), в группах по типам отелей (`hotel`), так что вы получите эти статистики отдельно для курортных и городских отелей.
+Какой тип отеля в среднем дороже?
 
 ```{r label-me-3}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
-### Exercise 8.
+### Упражнение 8.
 
-We observe two unusual values in the summary statistics above -- a negative minimum, and a very high maximum).
-What types of hotels are these?
-Locate these observations in the dataset and find out the arrival date (year and month) as well as how many people (adults, children, and babies) stayed in the room.
-You can investigate the data in the viewer to locate these values, but preferably you should identify them in a reproducible way with some code.
+Мы наблюдаем два необычных значения в описательных статистиках - отрицательный минимум и очень большой максимум.
+К какому типу этолей они относятся?
+Найдите эти наблюдения в наборе данных и выясните дату прибытия (год и месяц), а также сколько людей (взрослых, детей и младенцев) останавливалось в номере.
+Вы можете исследовать данные в браузере, чтобы обнаружить эти значения, но лучше найти их воспрозводимым способом утем написания кода.
 
-**Hint:** For example, you can `filter` for the given `adr` amounts and `select` the relevant columns.
+**Примечание:** Например, можно использовать `filter` по заданной цене `adr` и выбрать нужные столбцы с помощью `select`.
 
 ```{r label-me-4}
-# add code here
-# pay attention to correctness and code style
+# добавьте сюда код
+# уделите внимание корректности синтаксиса и стилю форматирования
 ```
 
 ## Data dictionary
 
-Below is the full data dictionary.
-Note that it is long (there are lots of variables in the data), but we will be using a limited set of the variables for our analysis.
+Ниже приведено полное описание данных.
+Обратите внимание, что оно длинное (много переменных в данных), но мы используем ограниченное множество переменных в нашем анализе.
 
 | variable                       | class     | description                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |:-------------------------------|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
