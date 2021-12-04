@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data classes</title>
+    <title>Классы данных</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data classes
+# Классы данных
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -40,31 +40,31 @@ layout: true
 
 class: middle
 
-# Data classes
+# Классы данных
 
 ---
 
-## Data classes
+## Классы данных
 
-We talked about *types* so far, next we'll introduce the concept of *classes*
+Концепция *класса* данных отличается от концепции *типа* данных (числовые, логические, текстовые и т.п.)
 
-- Vectors are like Lego building blocks
-
---
-- We stick them together to build more complicated constructs, e.g. *representations of data*
+- Вектора напоминают строительные блоки Лего
 
 --
-- The **class** attribute relates to the S3 class of an object which determines its behaviour
-  - You don't need to worry about what S3 classes really mean, but you can read more about it [here](https://adv-r.hadley.nz/s3.html#s3-classes) if you're curious
+- Мы можем соединить их вместе в более сложные конструкции
 
 --
-- Examples: factors, dates, and data frames
+- Атрибут **class** относится к системе классов S3 и определяет поведение объекта
+  - Вам не надо беспокоиться относительно того, как на самом деле устроены эти классы S3, но Вы можете почитать об этой системе [здесь](https://adv-r.hadley.nz/s3.html#s3-classes), если действительно интересно
+
+--
+- Примеры: факторы, даты и фреймы
   
 ---
 
-## Factors
+## Факторы
 
-R uses factors to handle categorical variables, variables that have a fixed and known set of possible values
+R использует факторы для работы с категориальными переменными, которые могут принимать зафиксированное и изместное множество значений
 
 
 ```r
@@ -103,9 +103,9 @@ class(x)
 
 ---
 
-## More on factors
+## Еще о факторах
 
-We can think of factors like character (level labels) and an integer (level numbers) glued together
+Можно думать о факторах как о текстовом (значения уровней) и целочисленном (номера уровней) векторах, соединенных вместе
 
 
 ```r
@@ -126,7 +126,7 @@ as.integer(x)
 
 ---
 
-## Dates
+## Даты
 
 
 ```r
@@ -156,9 +156,9 @@ class(y)
 
 ---
 
-## More on dates
+## Еще о датах
 
-We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
+Можно думать о датах как о числовом векторе (число дней с начала времен, то есть 1 января 1970 года) и о числовом значении (дата начала времен), соединенных вместе
 
 
 ```r
@@ -170,7 +170,7 @@ as.integer(y)
 ```
 
 ```r
-as.integer(y) / 365 # roughly 50 yrs
+as.integer(y) / 365 # примерно 50 лет
 ```
 
 ```
@@ -179,9 +179,9 @@ as.integer(y) / 365 # roughly 50 yrs
 
 ---
 
-## Data frames
+## Фреймы
 
-We can think of data frames like like vectors of equal length glued together
+Можно думать о фреймах как о веторах одинаковой длины, содеиненных вместе
 
 
 ```r
@@ -218,9 +218,9 @@ class(df)
 
 ---
 
-## Lists
+## Списки
 
-Lists are a generic vector container vectors of any type can go in them
+Списки - это нативный контейнер векторного типа, который может содержать значения любого типа
 
 
 ```r
@@ -245,10 +245,10 @@ l
 
 ---
 
-## Lists and data frames
+## Списки и фреймы
 
-- A data frame is a special list containing vectors of equal length
-- When we use the `pull()` function, we extract a vector from the data frame
+- Фрейм - это особый тип списка, содержащий векторы одинаковой длины
+- Если применить функцию `pull()`, можно изъять конкретный вектор из фрейма
 
 
 ```r
@@ -275,13 +275,13 @@ df %&gt;%
 
 class: middle
 
-# Working with factors
+# Работа с факторами
 
 ---
 
 
 
-## Read data in as character strings
+## Читаем данные как текстовые строки
 
 
 ```r
@@ -291,14 +291,14 @@ glimpse(cat_lovers)
 ```
 ## Rows: 60
 ## Columns: 3
-## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will…
-## $ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", …
-## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", …
+## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will~
+## $ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", ~
+## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", ~
 ```
 
 ---
 
-## But coerce when plotting
+## Но осуществляет приведение типа при визиализации
 
 
 ```r
@@ -306,11 +306,11 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
   geom_bar()
 ```
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-21-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Use forcats to manipulate factors
+## Используем forcats для манипулирования фактором
 
 
 ```r
@@ -320,55 +320,55 @@ cat_lovers %&gt;%
   geom_bar()
 ```
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-16-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-22-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Come for the functionality
+## Созданы для функциональности
 
 .pull-left[
-... stay for the logo
+... остаются ради логотипа
 ]
 .pull-right[
 &lt;img src="img/forcats-part-of-tidyverse.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-left-wide[
-- Factors are useful when you have true categorical data and you want to override the ordering of character vectors to improve display
-- They are also useful in modeling scenarios
-- The **forcats** package provides a suite of useful tools that solve common problems with factors
+- Факторы полезны, когда у Вас есть категориальная переменная И Вам нужно контролировать порядок значений для улучшения отображения
+- Они также полезны при моделировании
+- Пакет **forcats** предоставляет набор полезных инструментов для решения типичных проблем при работе с факторами
 ]
 
 ---
 
 .small[
 .your-turn[
-### .hand[Your turn!]
+### .hand[Ваша очередь!]
 
-- [RStudio Cloud](http://rstd.io/dsbox-cloud) &gt; `AE 05 - Hotels + Data types` &gt; `hotels-forcats.Rmd` &gt; knit
-- Recreate the x-axis of the following plot. 
-- **Stertch goal:** Recreate the y-axis.
+- Открывайте `hotels-forcats.Rmd` &gt; knit
+- Пересоздайте ось x на следующем графике. 
+- **Для продвинутых:** Пересоздайте еще и ось y.
 ]
 ]
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-24-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 class: middle
 
-# Working with dates
+# Работа с данными
 
 ---
 
-## Make a date
+## Создаем дату
 
 .pull-left[
 &lt;img src="img/lubridate-not-part-of-tidyverse.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-- **lubridate** is the tidyverse-friendly package that makes dealing with dates a little easier
-- It's not one of the *core* tidyverse packages, hence it's installed with `install.packages("tidyverse)` but it's not loaded with it, and needs to be explicitly loaded with `library(lubridate)`
+- **lubridate** - это совместимый с tidyverse пакет, облегчающий работу с датами
+- Он не входит в число *центральных* пакетов tidyverse, он устанавливается через `install.packages("tidyverse)`, но он не загружается вмести с ним, поэтому требуется загрузка в явном виде через `library(lubridate)`
 ]
 
 ---
@@ -376,13 +376,13 @@ class: middle
 class: middle
 
 .hand[.light-blue[
-we're just going to scratch the surface of working with dates in R here...
+сейчас мы собираемся только коснуться вершины айсберга работы с данными в R 
 ]]
 
 ---
 
 .question[
-Calculate and visualise the number of bookings on any given arrival date.
+Рассчитаем и визуализируем число бронирований за конкретную дату.
 ]
 
 
@@ -401,19 +401,25 @@ hotels %&gt;%
 ## 4              2015 July                                     27
 ## 5              2015 July                                     27
 ## 6              2015 July                                     27
-## # … with 119,384 more rows, and 1 more variable:
+## # ... with 119,384 more rows, and 1 more variable:
 ## #   arrival_date_day_of_month &lt;dbl&gt;
 ```
 
 ---
 
-## Step 1. Construct dates
+## Шаг 1. Сформируем даты
 
 .midi[
 
 ```r
 library(glue)
+```
 
+```
+## Warning: пакет 'glue' был собран под R версии 4.1.2
+```
+
+```r
 hotels %&gt;%
   mutate(
 *   arrival_date = glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")
@@ -423,19 +429,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 33
-##   arrival_date hotel       is_canceled lead_time arrival_date_ye…
+##   arrival_date hotel       is_canceled lead_time arrival_date_ye~
 ##   &lt;glue&gt;       &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-## 1 2015 July 1  Resort Hot…           0       342             2015
-## 2 2015 July 1  Resort Hot…           0       737             2015
-## 3 2015 July 1  Resort Hot…           0         7             2015
-## 4 2015 July 1  Resort Hot…           0        13             2015
+## 1 2015 July 1  Resort Hot~           0       342             2015
+## 2 2015 July 1  Resort Hot~           0       737             2015
+## 3 2015 July 1  Resort Hot~           0         7             2015
+## 4 2015 July 1  Resort Hot~           0        13             2015
 ...
 ```
 ]
 
 ---
 
-## Step 2. Count bookings per date
+## Шаг 2. Посчитаем число бронирований на каждую дату
 
 .midi[
 
@@ -455,13 +461,13 @@ hotels %&gt;%
 ## 4 2015 August 12   133
 ## 5 2015 August 13   107
 ## 6 2015 August 14   329
-## # … with 787 more rows
+## # ... with 787 more rows
 ```
 ]
 
 ---
 
-## Step 3. Visualise bookings per date
+## Шаг 3. Визуализируем бронирования на каждую дату
 
 .midi[
 
@@ -473,30 +479,36 @@ hotels %&gt;%
   geom_line()
 ```
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-29-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-.hand[zooming in a bit...]
+.hand[немного приблизим...]
 
 .question[
-Why does the plot start with August when we know our data start in July? And why does 10 August come after 1 August?
+ПОчему график начинается с августа, хотя мы знаем, что данные начинаются с июля? И почему 10 августа идет после 1 агуста?
 ]
 
 .midi[
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-24-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-30-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-## Step 1. *REVISED* Construct dates "as dates"
+## Шаг 1. *ПЕРЕСМОТРЕНО* Сформируем даты "как даты"
 
 .midi[
 
 ```r
 library(lubridate)
+```
 
+```
+## Warning: пакет 'lubridate' был собран под R версии 4.1.1
+```
+
+```r
 hotels %&gt;%
   mutate(
 *   arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))
@@ -506,19 +518,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 33
-##   arrival_date hotel       is_canceled lead_time arrival_date_ye…
+##   arrival_date hotel       is_canceled lead_time arrival_date_ye~
 ##   &lt;date&gt;       &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-## 1 2015-07-01   Resort Hot…           0       342             2015
-## 2 2015-07-01   Resort Hot…           0       737             2015
-## 3 2015-07-01   Resort Hot…           0         7             2015
-## 4 2015-07-01   Resort Hot…           0        13             2015
+## 1 2015-07-01   Resort Hot~           0       342             2015
+## 2 2015-07-01   Resort Hot~           0       737             2015
+## 3 2015-07-01   Resort Hot~           0         7             2015
+## 4 2015-07-01   Resort Hot~           0        13             2015
 ...
 ```
 ]
 
 ---
 
-## Step 2. Count bookings per date
+## Шаг 2. Посчитаем число бронирований на каждую дату
 
 .midi[
 
@@ -538,13 +550,13 @@ hotels %&gt;%
 ## 4 2015-07-04      88
 ## 5 2015-07-05      53
 ## 6 2015-07-06      75
-## # … with 787 more rows
+## # ... with 787 more rows
 ```
 ]
 
 ---
 
-## Step 3a. Visualise bookings per date
+## Шаг 3a. Визуализируем бронирования на каждую дату
 
 .midi[
 
@@ -556,12 +568,12 @@ hotels %&gt;%
   geom_line()
 ```
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-## Step 3b. Visualise using a smooth curve
+## Step 3b. Визуализируем с использованием сглаживающей кривой
 
 .midi[
 
@@ -573,7 +585,7 @@ hotels %&gt;%
 * geom_smooth()
 ```
 
-&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-28-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-34-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
