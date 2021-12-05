@@ -1,5 +1,5 @@
 ---
-title: "Importing data"
+title: "Импорт данных"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -26,7 +26,7 @@ library(here)
 
 class: middle
 
-# Reading rectangular data into R
+# Импорт табличных данных в R
 
 ---
 
@@ -48,11 +48,11 @@ knitr::include_graphics("img/readxl.png")
 .pull-left[
 ## readr
 
-- `read_csv()` - comma delimited files
-- `read_csv2()` - semicolon separated files (common in countries where , is used as the decimal place)
-- `read_tsv()` - tab delimited files
-- `read_delim()` - reads in files with any delimiter
-- `read_fwf()` - fixed width files
+- `read_csv()` - файлы с запятыми-разделителями
+- `read_csv2()` - файлы с двоеточиями-разделителями (распространены в странах, где запятые используются как десятичная точка)
+- `read_tsv()` - файлы с разделителями табуляцией
+- `read_delim()` - читает файлы с любыми разделителями
+- `read_fwf()` - файлы с фиксированной шириной
 - ...
 ]
 
@@ -60,13 +60,13 @@ knitr::include_graphics("img/readxl.png")
 .pull-right[
 ## readxl
 
-- `read_excel()` - read xls or xlsx files
+- `read_excel()` - читает файлы xls или xlsx
 - ...
 ]
 
 ---
 
-## Reading data
+## Чтение данных
 
 ```{r}
 nobel <- read_csv(file = "data/nobel.csv")
@@ -75,10 +75,10 @@ nobel
 
 ---
 
-## Writing data
+## Запись данных
 
 .pull-left[
-- Write a file
+- Запись файла
 
 ```{r cache=TRUE}
 df <- tribble(
@@ -94,7 +94,7 @@ write_csv(df, file = "data/df.csv")
 
 --
 .pull-right[
-- Read it back in to inspect
+- Прочитаем заново ради проверки
 
 ```{r}
 read_csv("data/df.csv")
@@ -104,30 +104,29 @@ read_csv("data/df.csv")
 ---
 
 .your-turn[
-### .hand[Your turn!]
+### .hand[Ваша очередь!]
 
-- RStudio Cloud > `AE 06 - Nobels and sales + Data import` > open `nobels-csv.Rmd` and knit.
-- Read in the `nobels.csv` file from the `data-raw/` folder.
-- Split into two (STEM and non-STEM): 
-  - Create a new data frame, `nobel_stem`, that filters for the STEM fields 
+- RStudio > открываем `nobels-csv.Rmd` и собираем.
+- Прочитайте файл `nobels.csv` из папки `data-raw/`.
+- разделите на два (STEM и не-STEM): 
+  - Создайте новый фрейм `nobel_stem`, в который выбраны области STEM 
 (Physics, Medicine, Chemistry, and Economics).
-  - Create another data frame, `nobel_nonstem`, that filters for the remaining 
-fields.  
+  - Создайте новый фрейм `nobel_nonstem`, в который выбраны все остальные области.  
 - Write out the two data frames to `nobel-stem.csv` and `nobel-nonstem.csv`, 
 respectively, to `data/`.
 
-**Hint:** Use the `%in%` operator when `filter()`ing.
+**Подсказка:** Используйте оператор `%in%` когда фильтруете через `filter()`.
 ]
 
 ---
 
 class: middle
 
-# Variable names
+# Имена переменных
 
 ---
 
-## Data with bad names
+## Данные с плохими именами
 
 ```{r message=FALSE}
 edibnb_badnames <- read_csv("data/edibnb-badnames.csv")
@@ -136,7 +135,7 @@ names(edibnb_badnames)
 
 --
 
-... but R doesn't allow spaces in variable names
+... но R не допускает пробелы в именах переменных
 
 ```{r error=TRUE}
 ggplot(edibnb_badnames, aes(x = Number of bathrooms, y = Price)) +
@@ -145,7 +144,7 @@ ggplot(edibnb_badnames, aes(x = Number of bathrooms, y = Price)) +
 
 ---
 
-## Option 1 - Define column names
+## Вариант 1 - Определяем имена столбцов
 
 .small[
 ```{r}
@@ -162,7 +161,7 @@ names(edibnb_col_names)
 
 ---
 
-## Option 2 - Format text to snake_case
+## Вариант 2 - Форматируем текст (используем snake_case)
 
 ```{r warning=FALSE}
 edibnb_clean_names <- read_csv("data/edibnb-badnames.csv") %>%
@@ -175,12 +174,12 @@ names(edibnb_clean_names)
 
 class: middle
 
-# Variable types
+# Типы переменных
 
 ---
 
 .question[
-Which type is `x`? Why?
+Какого типа `x`? Почему?
 ]
 
 .pull-left[
@@ -200,7 +199,7 @@ read_csv("data/df-na.csv") %>% print(n = 10)
 
 ---
 
-## Option 1. Explicit NAs
+## Вариант 1. NA в явном виде
 
 ```{r eval=FALSE}
 read_csv("data/df-na.csv", 
@@ -223,7 +222,7 @@ read_csv("data/df-na.csv",
 
 ---
 
-## Option 2. Specify column types
+## Вариант 2. Указываем типы столбцов
 
 ```{r eval=FALSE}
 read_csv("data/df-na.csv", col_types = list(col_double(), 
@@ -240,7 +239,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 
 ---
 
-## Column types
+## Типы столбцов
 
 .small[
 **type function**  | **data type**
@@ -262,7 +261,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 ---
 
 .question[
-Wondering where you remember these from?
+Хотите знать, откуда вы это помните?
 ]
 
 ```{r message=TRUE, output.lines=7}
@@ -273,11 +272,11 @@ read_csv("data/df-na.csv")
 
 class:middle
 
-# Case study: Favourite foods
+# Case study: Любимая еда
 
 ---
 
-## Favourite foods
+## Любимая еда
 
 ```{r echo=FALSE}
 knitr::include_graphics("img/fav-food/fav-food.png")
@@ -293,7 +292,7 @@ fav_food
 
 ---
 
-## Variable names
+## Имена переменных
 
 ```{r echo=FALSE}
 knitr::include_graphics("img/fav-food/fav-food-names.png")
@@ -310,7 +309,7 @@ fav_food
 
 ---
 
-## Handling NAs
+## Обрабатываем NA
 
 ```{r echo=FALSE}
 knitr::include_graphics("img/fav-food/fav-food-nas.png")
@@ -328,7 +327,7 @@ fav_food
 
 ---
 
-## Make `age` numeric
+## Делаем `age` числовой переменной
 
 .pull-left-wide[
 ```{r warning=FALSE}
@@ -349,10 +348,10 @@ knitr::include_graphics("img/fav-food/fav-food-age.png")
 
 ---
 
-## Socio-economic status
+## Социально-экономический статус
 
 .question[
-What order are the levels of `ses` listed in?
+В каком порядке перечислены уровни `ses`?
 ]
 
 .pull-left-wide[
@@ -369,7 +368,7 @@ knitr::include_graphics("img/fav-food/fav-food-ses.png")
 
 ---
 
-## Make `ses` factor
+## Сделаем `ses` фактором
 
 .pull-left-wide[
 ```{r warning=FALSE}
@@ -383,7 +382,7 @@ fav_food %>%
 
 ---
 
-## Putting it altogether
+## Соберем все вместе
 
 ```{r warning=FALSE}
 fav_food <- read_excel("data/favourite-food.xlsx", na = c("N/A", "99999")) %>%
@@ -399,7 +398,7 @@ fav_food
 
 ---
 
-## Out and back in
+## Наружу и обратно
 
 ```{r}
 write_csv(fav_food, file = "data/fav-food-clean.csv")
@@ -410,7 +409,7 @@ fav_food_clean <- read_csv("data/fav-food-clean.csv")
 ---
 
 .question[
-What happened to `ses` again?
+Что снова случилось с `ses`?
 ]
 
 ```{r}
@@ -420,10 +419,10 @@ fav_food_clean %>%
 
 ---
 
-## `read_rds()` and `write_rds()`
+## `read_rds()` и `write_rds()`
 
-- CSVs can be unreliable for saving interim results if there is specific variable type information you want to hold on to.
-- An alternative is RDS files, you can read and write them with `read_rds()` and `write_rds()`, respectively.
+- CSV может оказаться ненадежным при сохранении промежуточных результатов, когда есть специфичная для типа данных информация, которую необходимо сохранить.
+- Альтернативой являются файлы RDS, их можно читать и записывать с помощью `read_rds()` и `write_rds()`.
 
 ```{r eval=FALSE}
 read_rds(path)
@@ -432,7 +431,7 @@ write_rds(x, path)
 
 ---
 
-## Out and back in, take 2
+## Наружу и обратно, второй заход
 
 ```{r}
 write_rds(fav_food, file = "data/fav-food-clean.rds")
@@ -447,11 +446,11 @@ fav_food_clean %>%
 
 class: middle
 
-# Other types of data
+# Данные других типов
 
 ---
 
-## Other types of data
+## Данные других типов
 
 - **googlesheets4:** Google Sheets
 - **haven**: SPSS, Stata, and SAS files
@@ -465,11 +464,11 @@ class: middle
 ---
 
 .your-turn[
-### .hand[Your turn!]
+### .hand[Ваша очередь!]
 .midi[
-- RStudio Cloud > `AE 06 - Nobels and sales + Data import` > `sales-excel.Rmd`. 
-- Load the `sales.xlsx` file from the `data-raw/` folder, using appropriate arguments for the `read_excel()` function such that it looks like the output on the left.
-- **Stretch goal:** Manipulate the sales data such that it looks like the output on the right.
+- RStudio > `sales-excel.Rmd`. 
+- Загрузите файл `sales.xlsx` из папки `data-raw/`, используя соответствующие аргументы функции `read_excel()`, чтобы результат выглядел как слева.
+- **Для продвинутых:** Преобразуйте данные по продажам, чтобы они выглядели как справа.
 ]
 ]
 

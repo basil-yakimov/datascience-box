@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Importing data</title>
+    <title>Импорт данных</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Importing data
+# Импорт данных
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -39,7 +39,7 @@ layout: true
 
 class: middle
 
-# Reading rectangular data into R
+# Импорт табличных данных в R
 
 ---
 
@@ -57,11 +57,11 @@ class: middle
 .pull-left[
 ## readr
 
-- `read_csv()` - comma delimited files
-- `read_csv2()` - semicolon separated files (common in countries where , is used as the decimal place)
-- `read_tsv()` - tab delimited files
-- `read_delim()` - reads in files with any delimiter
-- `read_fwf()` - fixed width files
+- `read_csv()` - файлы с запятыми-разделителями
+- `read_csv2()` - файлы с двоеточиями-разделителями (распространены в странах, где запятые используются как десятичная точка)
+- `read_tsv()` - файлы с разделителями табуляцией
+- `read_delim()` - читает файлы с любыми разделителями
+- `read_fwf()` - файлы с фиксированной шириной
 - ...
 ]
 
@@ -69,13 +69,13 @@ class: middle
 .pull-right[
 ## readxl
 
-- `read_excel()` - read xls or xlsx files
+- `read_excel()` - читает файлы xls или xlsx
 - ...
 ]
 
 ---
 
-## Reading data
+## Чтение данных
 
 
 ```r
@@ -85,31 +85,29 @@ nobel
 
 ```
 ## # A tibble: 935 x 26
-##      id firstname  surname   year category affiliation      city 
-##   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;
-## 1     1 Wilhelm C… Röntgen   1901 Physics  Munich Universi… Muni…
-## 2     2 Hendrik A. Lorentz   1902 Physics  Leiden Universi… Leid…
-## 3     3 Pieter     Zeeman    1902 Physics  Amsterdam Unive… Amst…
-## 4     4 Henri      Becquer…  1903 Physics  École Polytechn… Paris
-## 5     5 Pierre     Curie     1903 Physics  École municipal… Paris
-## 6     6 Marie      Curie     1903 Physics  &lt;NA&gt;             &lt;NA&gt; 
-## # … with 929 more rows, and 19 more variables: country &lt;chr&gt;,
+##      id firstname      surname    year category affiliation city 
+##   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;
+## 1     1 Wilhelm Conrad Rontgen    1901 Physics  Munich Uni~ Muni~
+## 2     2 Hendrik A.     Lorentz    1902 Physics  Leiden Uni~ Leid~
+## 3     3 Pieter         Zeeman     1902 Physics  Amsterdam ~ Amst~
+## 4     4 Henri          Becquerel  1903 Physics  Ecole Poly~ Paris
+## 5     5 Pierre         Curie      1903 Physics  Ecole muni~ Paris
+## 6     6 Marie          Curie      1903 Physics  &lt;NA&gt;        &lt;NA&gt; 
+## # ... with 929 more rows, and 19 more variables: country &lt;chr&gt;,
 ## #   born_date &lt;date&gt;, died_date &lt;date&gt;, gender &lt;chr&gt;,
 ## #   born_city &lt;chr&gt;, born_country &lt;chr&gt;,
 ## #   born_country_code &lt;chr&gt;, died_city &lt;chr&gt;,
 ## #   died_country &lt;chr&gt;, died_country_code &lt;chr&gt;,
 ## #   overall_motivation &lt;chr&gt;, share &lt;dbl&gt;, motivation &lt;chr&gt;,
-## #   born_country_original &lt;chr&gt;, born_city_original &lt;chr&gt;,
-## #   died_country_original &lt;chr&gt;, died_city_original &lt;chr&gt;,
-## #   city_original &lt;chr&gt;, country_original &lt;chr&gt;
+## #   born_country_original &lt;chr&gt;, born_city_original &lt;chr&gt;, ...
 ```
 
 ---
 
-## Writing data
+## Запись данных
 
 .pull-left[
-- Write a file
+- Запись файла
 
 
 ```r
@@ -126,7 +124,7 @@ write_csv(df, file = "data/df.csv")
 
 --
 .pull-right[
-- Read it back in to inspect
+- Прочитаем заново ради проверки
 
 
 ```r
@@ -146,30 +144,29 @@ read_csv("data/df.csv")
 ---
 
 .your-turn[
-### .hand[Your turn!]
+### .hand[Ваша очередь!]
 
-- RStudio Cloud &gt; `AE 06 - Nobels and sales + Data import` &gt; open `nobels-csv.Rmd` and knit.
-- Read in the `nobels.csv` file from the `data-raw/` folder.
-- Split into two (STEM and non-STEM): 
-  - Create a new data frame, `nobel_stem`, that filters for the STEM fields 
+- RStudio &gt; открываем `nobels-csv.Rmd` и собираем.
+- Прочитайте файл `nobels.csv` из папки `data-raw/`.
+- разделите на два (STEM и не-STEM): 
+  - Создайте новый фрейм `nobel_stem`, в который выбраны области STEM 
 (Physics, Medicine, Chemistry, and Economics).
-  - Create another data frame, `nobel_nonstem`, that filters for the remaining 
-fields.  
+  - Создайте новый фрейм `nobel_nonstem`, в который выбраны все остальные области.  
 - Write out the two data frames to `nobel-stem.csv` and `nobel-nonstem.csv`, 
 respectively, to `data/`.
 
-**Hint:** Use the `%in%` operator when `filter()`ing.
+**Подсказка:** Используйте оператор `%in%` когда фильтруете через `filter()`.
 ]
 
 ---
 
 class: middle
 
-# Variable names
+# Имена переменных
 
 ---
 
-## Data with bad names
+## Данные с плохими именами
 
 
 ```r
@@ -187,7 +184,7 @@ names(edibnb_badnames)
 
 --
 
-... but R doesn't allow spaces in variable names
+... но R не допускает пробелы в именах переменных
 
 
 ```r
@@ -196,14 +193,14 @@ ggplot(edibnb_badnames, aes(x = Number of bathrooms, y = Price)) +
 ```
 
 ```
-## Error: &lt;text&gt;:1:40: unexpected symbol
+## Error: &lt;text&gt;:1:40: неожиданный симфол
 ## 1: ggplot(edibnb_badnames, aes(x = Number of
 ##                                            ^
 ```
 
 ---
 
-## Option 1 - Define column names
+## Вариант 1 - Определяем имена столбцов
 
 .small[
 
@@ -229,7 +226,7 @@ names(edibnb_col_names)
 
 ---
 
-## Option 2 - Format text to snake_case
+## Вариант 2 - Форматируем текст (используем snake_case)
 
 
 ```r
@@ -251,12 +248,12 @@ names(edibnb_clean_names)
 
 class: middle
 
-# Variable types
+# Типы переменных
 
 ---
 
 .question[
-Which type is `x`? Why?
+Какого типа `x`? Почему?
 ]
 
 .pull-left[
@@ -287,7 +284,7 @@ read_csv("data/df-na.csv")
 
 ---
 
-## Option 1. Explicit NAs
+## Вариант 1. NA в явном виде
 
 
 ```r
@@ -318,7 +315,7 @@ read_csv("data/df-na.csv",
 
 ---
 
-## Option 2. Specify column types
+## Вариант 2. Указываем типы столбцов
 
 
 ```r
@@ -329,9 +326,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 
 
 ```
-## Warning: 1 parsing failure.
-## row col expected actual             file
-##   6   x a double      . 'data/df-na.csv'
+## Warning: One or more parsing issues, see `problems()` for details
 ```
 
 ```
@@ -351,7 +346,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 
 ---
 
-## Column types
+## Типы столбцов
 
 .small[
 **type function**  | **data type**
@@ -373,7 +368,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 ---
 
 .question[
-Wondering where you remember these from?
+Хотите знать, откуда вы это помните?
 ]
 
 
@@ -382,13 +377,19 @@ read_csv("data/df-na.csv")
 ```
 
 ```
+## Rows: 9 Columns: 3
+```
+
+```
+## -- Column specification -----------------------------------------
+## Delimiter: ","
+## chr (3): x, y, z
+```
+
+```
 ## 
-## ── Column specification ─────────────────────────────────────────
-## cols(
-##   x = col_character(),
-##   y = col_character(),
-##   z = col_character()
-## )
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```
@@ -406,11 +407,11 @@ read_csv("data/df-na.csv")
 
 class:middle
 
-# Case study: Favourite foods
+# Case study: Любимая еда
 
 ---
 
-## Favourite foods
+## Любимая еда
 
 &lt;img src="img/fav-food/fav-food.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -427,16 +428,16 @@ fav_food
 ## # A tibble: 5 x 6
 ##   `Student ID` `Full Name`  favourite.food  mealPlan  AGE   SES  
 ##          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;
-## 1            1 Sunil Huffm… Strawberry yog… Lunch on… 4     High 
-## 2            2 Barclay Lynn French fries    Lunch on… 5     Midd…
-## 3            3 Jayendra Ly… N/A             Breakfas… 7     Low  
-## 4            4 Leon Rossini Anchovies       Lunch on… 99999 Midd…
-## 5            5 Chidiegwu D… Pizza           Breakfas… five  High
+## 1            1 Sunil Huffm~ Strawberry yog~ Lunch on~ 4     High 
+## 2            2 Barclay Lynn French fries    Lunch on~ 5     Midd~
+## 3            3 Jayendra Ly~ N/A             Breakfas~ 7     Low  
+## 4            4 Leon Rossini Anchovies       Lunch on~ 99999 Midd~
+## 5            5 Chidiegwu D~ Pizza           Breakfas~ five  High
 ```
 
 ---
 
-## Variable names
+## Имена переменных
 
 &lt;img src="img/fav-food/fav-food-names.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -454,16 +455,16 @@ fav_food
 ## # A tibble: 5 x 6
 ##   student_id full_name   favourite_food   meal_plan   age   ses  
 ##        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-## 1          1 Sunil Huff… Strawberry yogh… Lunch only  4     High 
-## 2          2 Barclay Ly… French fries     Lunch only  5     Midd…
-## 3          3 Jayendra L… N/A              Breakfast … 7     Low  
-## 4          4 Leon Rossi… Anchovies        Lunch only  99999 Midd…
-## 5          5 Chidiegwu … Pizza            Breakfast … five  High
+## 1          1 Sunil Huff~ Strawberry yogh~ Lunch only  4     High 
+## 2          2 Barclay Ly~ French fries     Lunch only  5     Midd~
+## 3          3 Jayendra L~ N/A              Breakfast ~ 7     Low  
+## 4          4 Leon Rossi~ Anchovies        Lunch only  99999 Midd~
+## 5          5 Chidiegwu ~ Pizza            Breakfast ~ five  High
 ```
 
 ---
 
-## Handling NAs
+## Обрабатываем NA
 
 &lt;img src="img/fav-food/fav-food-nas.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -482,16 +483,16 @@ fav_food
 ## # A tibble: 5 x 6
 ##   student_id full_name   favourite_food   meal_plan   age   ses  
 ##        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-## 1          1 Sunil Huff… Strawberry yogh… Lunch only  4     High 
-## 2          2 Barclay Ly… French fries     Lunch only  5     Midd…
-## 3          3 Jayendra L… &lt;NA&gt;             Breakfast … 7     Low  
-## 4          4 Leon Rossi… Anchovies        Lunch only  &lt;NA&gt;  Midd…
-## 5          5 Chidiegwu … Pizza            Breakfast … five  High
+## 1          1 Sunil Huff~ Strawberry yogh~ Lunch only  4     High 
+## 2          2 Barclay Ly~ French fries     Lunch only  5     Midd~
+## 3          3 Jayendra L~ &lt;NA&gt;             Breakfast ~ 7     Low  
+## 4          4 Leon Rossi~ Anchovies        Lunch only  &lt;NA&gt;  Midd~
+## 5          5 Chidiegwu ~ Pizza            Breakfast ~ five  High
 ```
 
 ---
 
-## Make `age` numeric
+## Делаем `age` числовой переменной
 
 .pull-left-wide[
 
@@ -509,9 +510,9 @@ glimpse(fav_food)
 ## Rows: 5
 ## Columns: 6
 ## $ student_id     &lt;dbl&gt; 1, 2, 3, 4, 5
-## $ full_name      &lt;chr&gt; "Sunil Huffmann", "Barclay Lynn", "Jayen…
-## $ favourite_food &lt;chr&gt; "Strawberry yoghurt", "French fries", NA…
-## $ meal_plan      &lt;chr&gt; "Lunch only", "Lunch only", "Breakfast a…
+## $ full_name      &lt;chr&gt; "Sunil Huffmann", "Barclay Lynn", "Jayen~
+## $ favourite_food &lt;chr&gt; "Strawberry yoghurt", "French fries", NA~
+## $ meal_plan      &lt;chr&gt; "Lunch only", "Lunch only", "Breakfast a~
 ## $ age            &lt;dbl&gt; 4, 5, 7, NA, 5
 ## $ ses            &lt;chr&gt; "High", "Middle", "Low", "Middle", "High"
 ```
@@ -522,10 +523,10 @@ glimpse(fav_food)
 
 ---
 
-## Socio-economic status
+## Социально-экономический статус
 
 .question[
-What order are the levels of `ses` listed in?
+В каком порядке перечислены уровни `ses`?
 ]
 
 .pull-left-wide[
@@ -550,7 +551,7 @@ fav_food %&gt;%
 
 ---
 
-## Make `ses` factor
+## Сделаем `ses` фактором
 
 .pull-left-wide[
 
@@ -574,7 +575,7 @@ fav_food %&gt;%
 
 ---
 
-## Putting it altogether
+## Соберем все вместе
 
 
 ```r
@@ -593,16 +594,16 @@ fav_food
 ## # A tibble: 5 x 6
 ##   student_id full_name   favourite_food   meal_plan     age ses  
 ##        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;       &lt;dbl&gt; &lt;fct&gt;
-## 1          1 Sunil Huff… Strawberry yogh… Lunch only      4 High 
-## 2          2 Barclay Ly… French fries     Lunch only      5 Midd…
-## 3          3 Jayendra L… &lt;NA&gt;             Breakfast …     7 Low  
-## 4          4 Leon Rossi… Anchovies        Lunch only     NA Midd…
-## 5          5 Chidiegwu … Pizza            Breakfast …     5 High
+## 1          1 Sunil Huff~ Strawberry yogh~ Lunch only      4 High 
+## 2          2 Barclay Ly~ French fries     Lunch only      5 Midd~
+## 3          3 Jayendra L~ &lt;NA&gt;             Breakfast ~     7 Low  
+## 4          4 Leon Rossi~ Anchovies        Lunch only     NA Midd~
+## 5          5 Chidiegwu ~ Pizza            Breakfast ~     5 High
 ```
 
 ---
 
-## Out and back in
+## Наружу и обратно
 
 
 ```r
@@ -614,7 +615,7 @@ fav_food_clean &lt;- read_csv("data/fav-food-clean.csv")
 ---
 
 .question[
-What happened to `ses` again?
+Что снова случилось с `ses`?
 ]
 
 
@@ -634,10 +635,10 @@ fav_food_clean %&gt;%
 
 ---
 
-## `read_rds()` and `write_rds()`
+## `read_rds()` и `write_rds()`
 
-- CSVs can be unreliable for saving interim results if there is specific variable type information you want to hold on to.
-- An alternative is RDS files, you can read and write them with `read_rds()` and `write_rds()`, respectively.
+- CSV может оказаться ненадежным при сохранении промежуточных результатов, когда есть специфичная для типа данных информация, которую необходимо сохранить.
+- Альтернативой являются файлы RDS, их можно читать и записывать с помощью `read_rds()` и `write_rds()`.
 
 
 ```r
@@ -647,7 +648,7 @@ write_rds(x, path)
 
 ---
 
-## Out and back in, take 2
+## Наружу и обратно, второй заход
 
 
 ```r
@@ -672,11 +673,11 @@ fav_food_clean %&gt;%
 
 class: middle
 
-# Other types of data
+# Данные других типов
 
 ---
 
-## Other types of data
+## Данные других типов
 
 - **googlesheets4:** Google Sheets
 - **haven**: SPSS, Stata, and SAS files
@@ -690,11 +691,11 @@ class: middle
 ---
 
 .your-turn[
-### .hand[Your turn!]
+### .hand[Ваша очередь!]
 .midi[
-- RStudio Cloud &gt; `AE 06 - Nobels and sales + Data import` &gt; `sales-excel.Rmd`. 
-- Load the `sales.xlsx` file from the `data-raw/` folder, using appropriate arguments for the `read_excel()` function such that it looks like the output on the left.
-- **Stretch goal:** Manipulate the sales data such that it looks like the output on the right.
+- RStudio &gt; `sales-excel.Rmd`. 
+- Загрузите файл `sales.xlsx` из папки `data-raw/`, используя соответствующие аргументы функции `read_excel()`, чтобы результат выглядел как слева.
+- **Для продвинутых:** Преобразуйте данные по продажам, чтобы они выглядели как справа.
 ]
 ]
 
@@ -710,7 +711,7 @@ class: middle
 ## 4 1822    3    
 ## 5 Brand 2 n    
 ## 6 3333    1    
-## # … with 3 more rows
+## # ... with 3 more rows
 ```
 ]
 .pull-right[
@@ -725,7 +726,7 @@ class: middle
 ## 4 Brand 2  3333     1
 ## 5 Brand 2  2156     3
 ## 6 Brand 2  3987     6
-## # … with 1 more row
+## # ... with 1 more row
 ```
 ]
     </textarea>
