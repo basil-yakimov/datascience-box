@@ -1,5 +1,5 @@
 ---
-title: "Recoding data"
+title: "Перекодирование данных"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -23,7 +23,7 @@ library(scales)
 
 class: middle
 
-# Case study: Religion and income
+# Case study: Религия и доход
 
 ---
 
@@ -37,7 +37,7 @@ Source: [pewforum.org/religious-landscape-study/income-distribution](https://www
 
 ---
 
-## Read data 
+## Читаем данные
 
 ```{r}
 library(readxl)
@@ -52,7 +52,7 @@ rel_inc
 
 ---
 
-## Rename columns
+## Переименовываем столбцы
 
 .midi[
 ```{r}
@@ -67,7 +67,7 @@ rel_inc %>%
 ---
 
 .question[
-If we want a new variable called `income` with levels such as "Less than $30,000", "$30,000-$49,999", ... etc. which function should we use?
+Какую функцию нужно применить, если нам нужна переменная `income` с уровнями типа "Less than $30,000", "$30,000-$49,999" и т.д.?
 ]
 
 ```{r echo=FALSE}
@@ -77,7 +77,7 @@ rel_inc %>%
     n = `Sample Size`
   ) %>%
   pivot_longer( 
-    cols = -c(religion, n),   # all but religion and n 
+    cols = -c(religion, n),   # все, кроме religion и n 
     names_to = "income",  
     values_to = "proportion" 
   ) %>% 
@@ -86,7 +86,7 @@ rel_inc %>%
 
 ---
 
-## Pivot longer
+## Преобразуем в длинный формат
 
 .midi[
 ```{r}
@@ -96,7 +96,7 @@ rel_inc %>%
     n = `Sample Size`
   ) %>%
   pivot_longer( 
-    cols = -c(religion, n),   # all but religion and n 
+    cols = -c(religion, n),   # все, кроме religion и n 
     names_to = "income",  
     values_to = "proportion" 
   ) 
@@ -105,7 +105,7 @@ rel_inc %>%
 
 ---
 
-## Calculate frequencies
+## Рассчитываем частоты
 
 .midi[
 ```{r}
@@ -125,7 +125,7 @@ rel_inc %>%
 
 ---
 
-## Save data
+## Запоминаем данные
 
 ```{r}
 rel_inc_long <- rel_inc %>% 
@@ -143,7 +143,7 @@ rel_inc_long <- rel_inc %>%
 
 ---
 
-## Barplot
+## Столбчатая диаграмма
 
 ```{r out.width="65%"}
 ggplot(rel_inc_long, aes(y = religion, x = frequency)) +
@@ -152,7 +152,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency)) +
 
 ---
 
-## Recode religion
+## Перекодируем религии
 
 .panelset[
 
@@ -179,7 +179,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency)) +
 
 ---
 
-## Reverse religion order
+## Инвертируем порядок религий
 
 .panelset[
 
@@ -201,7 +201,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency)) +
 
 ---
 
-## Add income
+## Добавляем доход
 
 .panelset[
 
@@ -221,7 +221,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Fill bars
+## Заполняем столбцы
 
 .panelset[
 
@@ -241,7 +241,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Change colors
+## Меняем цвета
 
 .panelset[
 
@@ -263,7 +263,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 ---
 
 
-## Change theme
+## Меняем тему
 
 .panelset[
 
@@ -285,7 +285,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Move legend to the bottom
+## Перемещаем легенду вниз
 
 .panelset[
 
@@ -308,7 +308,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Legend adjustments
+## Настраиваем легенду
 
 .panelset[
 
@@ -332,7 +332,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Fix labels
+## Исправляем подписи
 
 .panelset[
 
@@ -350,10 +350,10 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
   theme(legend.position = "bottom") +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
-    x = "Proportion", y = "", 
-    title = "Income distribution by religious group", 
+    x = "Доля", y = "", 
+    title = "Распределение дохода по религиозным группам", 
     subtitle = "Source: Pew Research Center, Religious Landscape Study", 
-    fill = "Income" 
+    fill = "Доход" 
     )
 ```
 ]

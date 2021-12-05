@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Recoding data</title>
+    <title>Перекодирование данных</title>
     <meta charset="utf-8" />
     <meta name="author" content="datasciencebox.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Recoding data
+# Перекодирование данных
 ## <br><br> Data Science in a Box
 ### <a href="https://datasciencebox.org/">datasciencebox.org</a>
 
@@ -40,7 +40,7 @@ layout: true
 
 class: middle
 
-# Case study: Religion and income
+# Case study: Религия и доход
 
 ---
 
@@ -52,7 +52,7 @@ Source: [pewforum.org/religious-landscape-study/income-distribution](https://www
 
 ---
 
-## Read data 
+## Читаем данные
 
 
 ```r
@@ -64,15 +64,15 @@ rel_inc &lt;- read_excel("data/relig-income.xlsx")
 
 ```
 ## # A tibble: 12 x 6
-##   `Religious tradition`      `Less than $30,000` `$30,000-$49,99…
+##   `Religious tradition`         `Less than $30,~ `$30,000-$49,99~
 ##   &lt;chr&gt;                                    &lt;dbl&gt;            &lt;dbl&gt;
 ## 1 Buddhist                                  0.36             0.18
 ## 2 Catholic                                  0.36             0.19
 ## 3 Evangelical Protestant                    0.35             0.22
 ## 4 Hindu                                     0.17             0.13
-## 5 Historically Black Protes…                0.53             0.22
+## 5 Historically Black Protestant             0.53             0.22
 ## 6 Jehovah's Witness                         0.48             0.25
-## # … with 6 more rows, and 3 more variables:
+## # ... with 6 more rows, and 3 more variables:
 ## #   $50,000-$99,999 &lt;dbl&gt;, $100,000 or more &lt;dbl&gt;,
 ## #   Sample Size &lt;dbl&gt;
 ```
@@ -80,7 +80,7 @@ rel_inc &lt;- read_excel("data/relig-income.xlsx")
 
 ---
 
-## Rename columns
+## Переименовываем столбцы
 
 .midi[
 
@@ -94,15 +94,15 @@ rel_inc %&gt;%
 
 ```
 ## # A tibble: 12 x 6
-##   religion     `Less than $30,… `$30,000-$49,99… `$50,000-$99,99…
+##   religion     `Less than $30,~ `$30,000-$49,99~ `$50,000-$99,99~
 ##   &lt;chr&gt;                   &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
 ## 1 Buddhist                 0.36             0.18             0.32
 ## 2 Catholic                 0.36             0.19             0.26
-## 3 Evangelical…             0.35             0.22             0.28
+## 3 Evangelical~             0.35             0.22             0.28
 ## 4 Hindu                    0.17             0.13             0.34
-## 5 Historicall…             0.53             0.22             0.17
-## 6 Jehovah's W…             0.48             0.25             0.22
-## # … with 6 more rows, and 2 more variables:
+## 5 Historicall~             0.53             0.22             0.17
+## 6 Jehovah's W~             0.48             0.25             0.22
+## # ... with 6 more rows, and 2 more variables:
 ## #   $100,000 or more &lt;dbl&gt;, n &lt;dbl&gt;
 ```
 ]
@@ -110,7 +110,7 @@ rel_inc %&gt;%
 ---
 
 .question[
-If we want a new variable called `income` with levels such as "Less than $30,000", "$30,000-$49,999", ... etc. which function should we use?
+Какую функцию нужно применить, если нам нужна переменная `income` с уровнями типа "Less than $30,000", "$30,000-$49,999" и т.д.?
 ]
 
 
@@ -133,12 +133,12 @@ If we want a new variable called `income` with levels such as "Less than $30,000
 ## 13 Hindu                    172 Less than $30,000       0.17
 ## 14 Hindu                    172 $30,000-$49,999         0.13
 ## 15 Hindu                    172 $50,000-$99,999         0.34
-## # … with 33 more rows
+## # ... with 33 more rows
 ```
 
 ---
 
-## Pivot longer
+## Преобразуем в длинный формат
 
 .midi[
 
@@ -149,7 +149,7 @@ rel_inc %&gt;%
     n = `Sample Size`
   ) %&gt;%
   pivot_longer( 
-    cols = -c(religion, n),   # all but religion and n 
+    cols = -c(religion, n),   # все, кроме religion и n 
     names_to = "income",  
     values_to = "proportion" 
   ) 
@@ -165,13 +165,13 @@ rel_inc %&gt;%
 ## 4 Buddhist   233 $100,000 or more        0.13
 ## 5 Catholic  6137 Less than $30,000       0.36
 ## 6 Catholic  6137 $30,000-$49,999         0.19
-## # … with 42 more rows
+## # ... with 42 more rows
 ```
 ]
 
 ---
 
-## Calculate frequencies
+## Рассчитываем частоты
 
 .midi[
 
@@ -199,13 +199,13 @@ rel_inc %&gt;%
 ## 4 Buddhist   233 $100,000 or more        0.13        30
 ## 5 Catholic  6137 Less than $30,000       0.36      2209
 ## 6 Catholic  6137 $30,000-$49,999         0.19      1166
-## # … with 42 more rows
+## # ... with 42 more rows
 ```
 ]
 
 ---
 
-## Save data
+## Запоминаем данные
 
 
 ```r
@@ -224,7 +224,7 @@ rel_inc_long &lt;- rel_inc %&gt;%
 
 ---
 
-## Barplot
+## Столбчатая диаграмма
 
 
 ```r
@@ -236,7 +236,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency)) +
 
 ---
 
-## Recode religion
+## Перекодируем религии
 
 .panelset[
 
@@ -261,7 +261,7 @@ rel_inc_long &lt;- rel_inc_long %&gt;%
 
 ---
 
-## Reverse religion order
+## Инвертируем порядок религий
 
 .panelset[
 
@@ -281,7 +281,7 @@ rel_inc_long &lt;- rel_inc_long %&gt;%
 
 ---
 
-## Add income
+## Добавляем доход
 
 .panelset[
 
@@ -301,7 +301,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Fill bars
+## Заполняем столбцы
 
 .panelset[
 
@@ -321,7 +321,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Change colors
+## Меняем цвета
 
 .panelset[
 
@@ -343,7 +343,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 ---
 
 
-## Change theme
+## Меняем тему
 
 .panelset[
 
@@ -365,7 +365,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Move legend to the bottom
+## Перемещаем легенду вниз
 
 .panelset[
 
@@ -388,7 +388,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Legend adjustments
+## Настраиваем легенду
 
 .panelset[
 
@@ -412,7 +412,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 
 ---
 
-## Fix labels
+## Исправляем подписи
 
 .panelset[
 
@@ -430,10 +430,10 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
   theme(legend.position = "bottom") +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
-    x = "Proportion", y = "", 
-    title = "Income distribution by religious group", 
+    x = "Доля", y = "", 
+    title = "Распределение дохода по религиозным группам", 
     subtitle = "Source: Pew Research Center, Religious Landscape Study", 
-    fill = "Income" 
+    fill = "Доход" 
     )
 ```
 ]
