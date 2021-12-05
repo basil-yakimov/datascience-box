@@ -1,5 +1,5 @@
 ---
-title: "Nobel winners"
+title: "Обладатели нобелевской премии"
 author: "Mine Çetinkaya-Rundel"
 output: github_document
 ---
@@ -8,13 +8,13 @@ output: github_document
 library(tidyverse)
 ```
 
-Let's first load the data:
+В первую очередь загрузим данные:
 
 ```{r label-me1, eval=FALSE}
 nobel <- ___(___)
 ```
 
-Then let's split the data into two:
+Затем, разделим данные на две части:
 
 ```{r label-me2, eval=FALSE}
 # stem laureates
@@ -26,8 +26,8 @@ ___ <- nobel %>%
   filter(___)
 ```
 
-And finally write out the data:
+И, наконец, запишем данные:
 
 ```{r label-me3}
-# add code for writing out the two data frames here
+# добавьте код для записи двух фреймов в файлы
 ```
