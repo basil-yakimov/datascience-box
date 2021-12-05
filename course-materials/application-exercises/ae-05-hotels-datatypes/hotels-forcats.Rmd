@@ -14,30 +14,30 @@ library(skimr)
 hotels <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/hotels.csv")
 ```
 
-First, knit the document and view the following visualisation.
-How are the months ordered?
-What would be a better order?
-Then, reorder the months on the x-axis (levels of `arrival_date_month`) in a way that makes more sense.
-You will want to use a function from the **forcats** package, see <https://forcats.tidyverse.org/reference/index.html> for inspiration and help.
+Прежде всего, соберите документ и приглядитесь к следующей визуализации.
+Как упорядочены месяцы?
+Как их лучше упорядочить?
+Теперь, измените порядок месяцев на оси x (уровни переменной `arrival_date_month`), чтобы сделать его более осмысленным.
+Вам понадобится функция из пакета **forcats**, см. <https://forcats.tidyverse.org/reference/index.html> для поиска идей и помощи.
 
-**Stretch goal:** If you finish the above task before time is up, change the y-axis label so the values are shown with dollar signs, e.g. $80 instead of 80.
-You will want to use a function from the **scales** package, see <https://scales.r-lib.org/reference/index.html> for inspiration and help.
+**Для продвинутых:** Если Вы завершили основное задание, попробуйте изменить подпись к оси y таким образом, чтобы значения отображались со знаком доллара, например $80 вместо 80.
+Вам понадобится функция из пакета **scales**, см. <https://scales.r-lib.org/reference/index.html> для поиска идей и помощи.
 
 ```{r plot, fig.width=10}
 hotels %>%
-  group_by(hotel, arrival_date_month) %>%   # group by hotel type and arrival month
-  summarise(mean_adr = mean(adr)) %>%       # calculate mean adr for each group
+  group_by(hotel, arrival_date_month) %>%   # группировка по типам отелей и месяцу прибытия
+  summarise(mean_adr = mean(adr)) %>%       # рассчитываем среднюю цену для каждой группы
   ggplot(aes(
-    x = arrival_date_month,                 # x-axis = arrival_date_month
-    y = mean_adr,                           # y-axis = mean_adr calculated above
-    group = hotel,                          # group lines by hotel type
-    color = hotel)                          # and color by hotel type
+    x = arrival_date_month,                 # ось x = arrival_date_month
+    y = mean_adr,                           # ось y = mean_adr рассчитанная выше
+    group = hotel,                          # группируем линии по типу отеля
+    color = hotel)                          # и окрашиваем по типу отеля
     ) +
-  geom_line() +                             # use lines to represent data
-  theme_minimal() +                         # use a minimal theme
-  labs(x = "Arrival month",                 # customize labels
-       y = "Mean ADR (average daily rate)",
-       title = "Comparison of resort and city hotel prices across months",
-       subtitle = "Resort hotel prices soar in the summer while ciry hotel prices remain relatively constant throughout the year",
-       color = "Hotel type")
+  geom_line() +                             # используем линии для отображения данных
+  theme_minimal() +                         # используем минимальную тему
+  labs(x = "Месяц прибытия",                 # настраиваем подписи
+       y = "Средняя цена",
+       title = "Сравнение цен в курортных и городских отелях в разные месяцы",
+       subtitle = "Летом цены на курортные отели растут, в то время как цены на городские отели остаются относительно постоянными в течение всего года",
+       color = "Тип отеля")
 ```
