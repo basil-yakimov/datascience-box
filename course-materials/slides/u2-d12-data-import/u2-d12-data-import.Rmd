@@ -108,14 +108,14 @@ read_csv("data/df.csv")
 
 - RStudio > открываем `nobels-csv.Rmd` и собираем.
 - Прочитайте файл `nobels.csv` из папки `data-raw/`.
-- разделите на два (STEM и не-STEM): 
+- Разделите данные на два (STEM и не-STEM) фрейма: 
   - Создайте новый фрейм `nobel_stem`, в который выбраны области STEM 
 (Physics, Medicine, Chemistry, and Economics).
   - Создайте новый фрейм `nobel_nonstem`, в который выбраны все остальные области.  
-- Write out the two data frames to `nobel-stem.csv` and `nobel-nonstem.csv`, 
-respectively, to `data/`.
+- Сохраните два фрейма в файлы `nobel-stem.csv` и `nobel-nonstem.csv`, 
+соответственно, в папку `data/`.
 
-**Подсказка:** Используйте оператор `%in%` когда фильтруете через `filter()`.
+**Подсказка:** Используйте оператор `%in%`, когда фильтруете через `filter()`.
 ]
 
 ---
@@ -242,7 +242,7 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 ## Типы столбцов
 
 .small[
-**type function**  | **data type**
+**функция типа**  | **тип данных**
 ------------------ | -------------
 `col_character()`  | character
 `col_date()`       | date
@@ -257,16 +257,6 @@ read_csv("data/df-na.csv", col_types = list(col_double(),
 `col_skip()`       | do not read
 `col_time()`       | time
 ]
-
----
-
-.question[
-Хотите знать, откуда вы это помните?
-]
-
-```{r message=TRUE, output.lines=7}
-read_csv("data/df-na.csv")
-```
 
 ---
 
